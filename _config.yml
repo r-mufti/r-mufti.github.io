@@ -1,0 +1,7 @@
+# GitHub Pages settings.
+# The site itself is plain HTML, CSS and JavaScript; this file only keeps the
+# project notes off the live website (CLAUDE.md has the email address in
+# plain text, which would defeat the spam protection on the page).
+exclude:
+  - CLAUDE.md
+  - README.md
