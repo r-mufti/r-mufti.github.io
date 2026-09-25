@@ -1,0 +1,1128 @@
+/* ==========================================================================
+   Roushan Mufti Mohammad: portfolio styles
+
+   Sections in this file:
+     1. Colours, fonts and sizes (edit these first)
+     2. Base styles
+     3. Layout helpers and buttons
+     4. Header and navigation
+     5. Hero
+     6. Page sections (About, Education, Skills, Certifications, Leadership)
+     7. Contact
+     8. Footer
+     9. Fade-in animation
+   ========================================================================== */
+
+
+/* 1. Colours, fonts and sizes
+   ========================================================================== */
+:root {
+  --navy: #0B1F3A;          /* primary */
+  --navy-soft: #16305A;     /* lighter navy for panels on navy */
+  --gold: #C9A227;          /* accent: lines, markers, buttons. Not for text on white (too light) */
+  --gold-hover: #B8921E;
+  --ink: #1B2533;           /* main body text */
+  --grey: #5B6573;          /* secondary text on white */
+  --grey-light: #B8C2D1;    /* secondary text on navy */
+  --line: #E1E5EB;          /* borders and dividers */
+  --tint: #F6F7F9;          /* very light background for alternating sections */
+  --white: #FFFFFF;
+  --focus: var(--navy);     /* keyboard focus outline colour */
+
+  --font-heading: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  --container: 1120px;
+  --header-height: 68px;
+  --radius: 6px;
+}
+
+
+/* 2. Base styles
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  color: var(--navy);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p, ul, ol, dl, dd {
+  margin: 0;
+}
+
+a {
+  color: var(--navy);
+}
+
+/* Never show elements marked "hidden", even if a class gives them a display value */
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Navy areas use a gold focus outline so it stays visible */
+.on-dark,
+.site-header {
+  --focus: var(--gold);
+}
+
+/* Text for screen readers only */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+
+/* 3. Layout helpers and buttons
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-gold {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+}
+
+.btn-gold:hover {
+  background: var(--gold-hover);
+  border-color: var(--gold-hover);
+}
+
+.btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.7);
+  color: var(--white);
+}
+
+.btn-outline-light:hover {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--navy);
+}
+
+/* While the resume button is hidden, "Contact Me" becomes the main (gold) button */
+.btn[hidden] + .btn-outline-light {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+}
+
+.btn[hidden] + .btn-outline-light:hover {
+  background: var(--gold-hover);
+  border-color: var(--gold-hover);
+}
+
+.btn-navy {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+.btn-navy:hover {
+  background: var(--navy-soft);
+  border-color: var(--navy-soft);
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+
+/* 4. Header and navigation
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--gold);
+  border-radius: 4px;
+  color: var(--gold);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.brand-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.site-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: var(--grey-light);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover {
+  color: var(--white);
+}
+
+.site-nav .nav-cta {
+  margin-left: 0.5rem;
+  border: 1.5px solid var(--gold);
+  border-radius: var(--radius);
+  color: var(--gold);
+}
+
+.site-nav .nav-cta:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* Menu button: only shown on smaller screens */
+.nav-toggle {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+/* Three-line "hamburger" icon drawn with CSS */
+.nav-toggle-icon,
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  position: absolute;
+  left: 11px;
+  width: 22px;
+  height: 2px;
+  background: var(--white);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle-icon {
+  top: 21px;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  content: "";
+  left: 0;
+}
+
+.nav-toggle-icon::before {
+  top: -7px;
+}
+
+.nav-toggle-icon::after {
+  top: 7px;
+}
+
+/* Turns into an "X" when the menu is open */
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon {
+  background: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  /* Only switch to the drop-down menu when JavaScript can open it */
+  .js .nav-toggle {
+    display: block;
+  }
+
+  .js .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--navy);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 24px rgba(11, 31, 58, 0.25);
+  }
+
+  .js .site-nav.is-open {
+    display: block;
+  }
+
+  .js .site-nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem 1.25rem 1.25rem;
+  }
+
+  .js .site-nav a {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 1rem;
+  }
+
+  .js .site-nav .nav-cta {
+    margin: 1rem 0 0;
+    padding: 0.85rem 1rem;
+    text-align: center;
+  }
+
+  /* Without JavaScript the links simply wrap under the name */
+  html:not(.js) .header-inner {
+    flex-wrap: wrap;
+    padding-top: 0.75rem;
+    padding-bottom: 0.5rem;
+  }
+
+  html:not(.js) .site-nav ul {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* 5. Hero
+   ========================================================================== */
+.hero {
+  position: relative;
+  padding: clamp(3.5rem, 8vw, 6.5rem) 0 clamp(3.5rem, 8vw, 6rem);
+  background: var(--navy);
+  color: var(--white);
+  overflow: hidden;
+}
+
+/* Very faint ledger lines for texture */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 100% 36px;
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.hero-eyebrow {
+  margin-bottom: 1rem;
+  color: var(--gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  color: var(--white);
+  font-size: clamp(2.3rem, 5.4vw, 3.9rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+/* Short gold rule under the name */
+.hero h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin-top: 1.4rem;
+  background: var(--gold);
+}
+
+.hero-headline {
+  margin-top: 1.4rem;
+  overflow: hidden; /* clips the separator at the start of each line (see below) */
+  color: var(--white);
+  font-size: clamp(1.05rem, 1.9vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Every phrase gets a gold "|" in front of it. The row is shifted left by the
+   width of one separator, so the separator that starts each line is hidden and
+   a line never begins or ends with a stray "|". */
+.headline-items {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -1.6em;
+}
+
+.headline-items > span {
+  white-space: nowrap;
+}
+
+.headline-items > span::before {
+  content: "|";
+  content: "|" / ""; /* decorative: not read out by screen readers */
+  display: inline-block;
+  width: 1.6em;
+  color: var(--gold);
+  text-align: center;
+}
+
+.hero-value {
+  max-width: 36em;
+  margin-top: 1rem;
+  color: var(--grey-light);
+  font-size: 1.05rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+/* "At a glance" panel, styled like a term sheet */
+.glance {
+  padding: 1.75rem 1.75rem 1.5rem;
+  background: var(--navy-soft);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius);
+}
+
+.glance-title {
+  margin-bottom: 1rem;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.glance dl > div {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glance dt {
+  color: var(--grey-light);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.glance dd {
+  color: var(--white);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+
+/* 6. Page sections
+   ========================================================================== */
+.section {
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: var(--header-height);
+}
+
+.section-tint {
+  background: var(--tint);
+}
+
+/* CV-style layout: section title in the left column, content on the right */
+.section-grid {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: 3rem;
+}
+
+.section-heading h2 {
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+}
+
+.section-heading h2::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  margin-top: 0.9rem;
+  background: var(--gold);
+}
+
+.lead {
+  max-width: 42em;
+  font-size: clamp(1.08rem, 1.6vw, 1.2rem);
+  line-height: 1.75;
+}
+
+.subhead {
+  margin: 3rem 0 1.25rem;
+  color: var(--grey);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+.section-body > .subhead:first-child {
+  margin-top: 0.4rem;
+}
+
+.card {
+  padding: 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* ----- Education timeline ----- */
+.timeline {
+  position: relative;
+  padding: 0;
+  list-style: none;
+}
+
+/* The vertical line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 5px;
+  width: 2px;
+  background: var(--line);
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 2.5rem 2.25rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* The marker on the line */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 0.35rem;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--white);
+  border: 3px solid var(--navy);
+  border-radius: 50%;
+}
+
+.timeline-item:first-child::before {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.timeline-date {
+  margin-bottom: 0.3rem;
+  color: var(--grey);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline-item h3 {
+  font-size: 1.3rem;
+}
+
+.institution {
+  margin-top: 0.25rem;
+  color: var(--ink);
+}
+
+.coursework-label {
+  margin: 1rem 0 0.6rem;
+  color: var(--grey);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.3rem 0.75rem;
+  background: var(--tint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--navy);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* ----- Skills ----- */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.skill-card {
+  border-top: 3px solid var(--navy);
+}
+
+.skill-card h4,
+.cert-card h4 {
+  font-size: 1.15rem;
+}
+
+.skill-card ul {
+  margin-top: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.skill-card li {
+  position: relative;
+  padding: 0.3rem 0 0.3rem 1.1rem;
+  font-size: 0.975rem;
+}
+
+/* Small gold square bullet */
+.skill-card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+}
+
+/* ----- CFA note (shown apart from the certificate cards) ----- */
+.cfa-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.cfa-label {
+  padding: 0.15rem 0.6rem;
+  background: var(--navy);
+  border-radius: 3px;
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ----- Certificate and workshop cards ----- */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.cert-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-issuer {
+  margin-top: 0.4rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.cert-meta {
+  margin-top: 0.2rem;
+  color: var(--grey);
+  font-size: 0.875rem;
+}
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* If every link in the row is hidden (files not uploaded yet), hide the empty row too */
+.card-links:not(:has(> :not([hidden]))) {
+  display: none;
+}
+
+.card-links a {
+  position: relative;
+  color: var(--navy);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 1px;
+}
+
+.card-links a:hover {
+  border-bottom-color: var(--navy);
+}
+
+/* Arrow after external "Verify" links */
+.card-links a[href^="http"]::after {
+  content: " \2197";
+  font-weight: 400;
+}
+
+/* ----- Projects (used once the section is switched on) ----- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.project-card h3 {
+  font-size: 1.2rem;
+}
+
+.project-finding {
+  color: var(--navy);
+}
+
+/* ----- Leadership ----- */
+.role-card {
+  max-width: 34rem;
+  border-left: 4px solid var(--gold);
+}
+
+.role-title {
+  color: var(--grey);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.role-card h3 {
+  margin-top: 0.3rem;
+  font-size: 1.25rem;
+}
+
+
+/* 7. Contact
+   ========================================================================== */
+.section-contact {
+  background: var(--navy);
+  border-top: 0;
+  color: var(--white);
+}
+
+.section-contact .section-heading h2 {
+  color: var(--white);
+}
+
+.contact-intro {
+  max-width: 38em;
+  color: var(--grey-light);
+  font-size: 1.1rem;
+}
+
+.contact-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 13rem;
+  padding: 1rem 1.25rem;
+  background: var(--navy-soft);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  color: var(--white);
+  text-decoration: none;
+}
+
+a.contact-row {
+  transition: border-color 0.2s ease;
+}
+
+a.contact-row:hover {
+  border-color: var(--gold);
+}
+
+.contact-label {
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-value {
+  font-weight: 500;
+}
+
+.contact-value a {
+  color: var(--white);
+  overflow-wrap: anywhere;
+}
+
+/* A button that looks like a link (used for "Show email address") */
+.link-button {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid var(--gold);
+  color: var(--white);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  color: var(--gold);
+}
+
+/* ----- Contact form ----- */
+.contact-form {
+  max-width: 40rem;
+  margin-top: 2.5rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--white);
+  border-radius: var(--radius);
+  color: var(--ink);
+  --focus: var(--navy);
+}
+
+.form-title {
+  margin-bottom: 1.25rem;
+  font-size: 1.35rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1rem;
+}
+
+.field {
+  margin-bottom: 1.1rem;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--navy);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.optional {
+  color: var(--grey);
+  font-weight: 400;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  background: var(--white);
+  border: 1px solid #C5CCD6;
+  border-radius: 4px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--navy);
+}
+
+.form-status {
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status.is-success {
+  color: #1E6B3A;
+}
+
+.form-status.is-error {
+  color: #A12A2A;
+}
+
+
+/* 8. Footer
+   ========================================================================== */
+.site-footer {
+  padding: 1.5rem 0;
+  background: #081629;
+  color: var(--grey-light);
+  font-size: 0.875rem;
+  --focus: var(--gold);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+.site-footer a {
+  color: var(--grey-light);
+}
+
+.site-footer a:hover {
+  color: var(--white);
+}
+
+
+/* 9. Fade-in animation (only when JavaScript is running)
+   ========================================================================== */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Respect visitors who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .btn,
+  .site-nav a,
+  .nav-toggle-icon,
+  .nav-toggle-icon::before,
+  .nav-toggle-icon::after {
+    transition: none;
+  }
+}
+
+
+/* Responsive adjustments
+   ========================================================================== */
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .glance {
+    max-width: 36rem;
+  }
+
+  .section-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .brand-name {
+    font-size: 0.98rem;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 100%;
+  }
+
+  .glance {
+    padding: 1.4rem 1.25rem 1.1rem;
+  }
+
+  .glance dl > div {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+
+  .skill-grid,
+  .cert-grid,
+  .project-grid,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-row {
+    flex: 1 1 100%;
+  }
+}
+
+/* Very narrow phones: show only the "RM" mark, but keep the name for screen readers */
+@media (max-width: 360px) {
+  .brand-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
