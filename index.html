@@ -8,7 +8,7 @@
   <title>Roushan Mufti Mohammad | Finance Postgraduate, Delhi School of Economics</title>
   <meta name="description" content="Roushan Mufti Mohammad is a finance postgraduate (M.Com, Finance) from the Delhi School of Economics, seeking entry-level roles in financial analysis, equity research, and investment and corporate banking in India, the Gulf and Europe.">
   <link rel="canonical" href="https://roushanmufti.in/">
-  <meta name="theme-color" content="#0B1F3A">
+  <meta name="theme-color" content="#E9E4DA">
 
   <!-- ===== Link previews (LinkedIn, WhatsApp, email, etc.) ===== -->
   <meta property="og:type" content="profile">
@@ -31,8 +31,9 @@
   <!-- ===== Fonts: Playfair Display (headings) and Inter (body text) ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap">
 
+  <link rel="preload" as="image" href="assets/photos/roushan-cutout.webp" type="image/webp">
   <link rel="stylesheet" href="styles.css">
 
   <!-- Marks the page as "JavaScript available" so animations only apply when they can run -->
@@ -60,153 +61,198 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <!-- ICONS: drawn once here and reused below with <use href="#i-name"> -->
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h7"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></symbol>
+    <symbol id="i-table" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 3-5.5 6-5.5s6 2 6 5.5M15 14.5c3 0 6 1.5 6 5"/></symbol>
+    <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></symbol>
+  </svg>
+
   <!-- =====================================================================
-       HEADER: floating navigation bar
+       TOP BAR (phones and tablets only)
        ===================================================================== -->
-  <header class="site-header">
-    <div class="container">
-      <div class="header-bar">
-        <a class="brand" href="#top">
-          <span class="brand-mark" aria-hidden="true">RM</span>
-          <span class="brand-name">Roushan Mufti Mohammad</span>
+  <header class="topbar">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">RM</span>
+      <span class="brand-name">Roushan Mufti Mohammad</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="nav-toggle-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Main">
+      <ul>
+        <li><a href="#about">About me</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certifications">Credentials</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a class="mobile-nav-cta" href="#contact">Contact me</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- =====================================================================
+       SIDEBAR (large screens only). It slides in once the visitor scrolls
+       past the top section, and switches to dark colours over dark sections.
+       ===================================================================== -->
+  <aside class="sidebar" id="sidebar" aria-label="Quick links">
+    <div class="side-box side-brand">
+      <div class="side-brand-top">
+        <a class="side-logo" href="#top">Roushan</a>
+        <!-- LinkedIn: appears once YOUR_LINKEDIN_ID is replaced (see the Contact section) -->
+        <a class="side-icon" href="https://www.linkedin.com/in/YOUR_LINKEDIN_ID" target="_blank" rel="noopener" data-needs-setup hidden>
+          <svg><use href="#i-in"/></svg><span class="visually-hidden">LinkedIn profile (opens in a new tab)</span>
         </a>
+      </div>
+      <p>Finance postgraduate from the Delhi School of Economics, seeking entry-level roles in
+         financial analysis, equity research and banking.</p>
+    </div>
 
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-          <span class="nav-toggle-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Menu</span>
-        </button>
+    <div class="side-box side-stats">
+      <p><span class="side-num" data-count="6">6</span> Certifications</p>
+      <p><span class="side-num" data-count="2">2</span> DU degrees</p>
+    </div>
 
-        <nav id="site-nav" class="site-nav" aria-label="Main">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#journey">Education</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <!-- When the Projects section below is switched on, also switch on this link:
-            <li><a href="#projects">Projects</a></li>
-            -->
-            <li><a href="#faq">FAQ</a></li>
-            <li><a class="nav-cta" href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+    <nav class="side-box side-nav" aria-label="Sections">
+      <ul>
+        <li><a href="#top"><svg aria-hidden="true"><use href="#i-home"/></svg>Home</a></li>
+        <li><a href="#about"><svg aria-hidden="true"><use href="#i-user"/></svg>About me</a></li>
+        <li><a href="#journey"><svg aria-hidden="true"><use href="#i-route"/></svg>Journey</a></li>
+        <li><a href="#skills"><svg aria-hidden="true"><use href="#i-layers"/></svg>Skills</a></li>
+        <li><a href="#certifications"><svg aria-hidden="true"><use href="#i-award"/></svg>Credentials</a></li>
+        <li><a href="#faq"><svg aria-hidden="true"><use href="#i-help"/></svg>FAQ</a></li>
+      </ul>
+    </nav>
+
+    <div class="side-box side-marquee" aria-hidden="true">
+      <div class="marquee-window">
+        <ul class="marquee-track"><li>Delhi School of Economics</li><li>ADBI</li><li>HarvardX</li><li>Coursera</li><li>Udemy</li><li>HP LIFE</li><li>CertiProf</li></ul>
+        <ul class="marquee-track"><li>Delhi School of Economics</li><li>ADBI</li><li>HarvardX</li><li>Coursera</li><li>Udemy</li><li>HP LIFE</li><li>CertiProf</li></ul>
       </div>
     </div>
-  </header>
+
+    <!-- Email: put together only when clicked (keeps it away from spam bots), then copied -->
+    <div class="side-box side-email">
+      <button type="button" class="copy-email" data-copy-email>
+        <span class="copy-email-text">Copy email address</span>
+        <svg aria-hidden="true"><use href="#i-copy"/></svg>
+      </button>
+    </div>
+
+    <a class="side-cta" href="#contact">Contact Me</a>
+  </aside>
 
   <main id="main">
 
     <!-- =====================================================================
          1. HERO
          ===================================================================== -->
-    <section class="hero on-dark" id="top" aria-labelledby="hero-title">
-      <div class="container hero-grid">
+    <section class="hero" id="top" aria-labelledby="hero-name">
 
-        <div class="hero-copy">
-          <p class="status-chip hero-in" style="--i: 0">
-            <span class="status-dot" aria-hidden="true"></span>
-            Available to join within one month
-          </p>
+      <!-- Giant name behind the photo (decorative; the real name is the heading below) -->
+      <p class="masthead" aria-hidden="true"><span style="--i:0">R</span><span style="--i:1">o</span><span style="--i:2">u</span><span style="--i:3">s</span><span style="--i:4">h</span><span style="--i:5">a</span><span style="--i:6">n</span></p>
 
-          <h1 id="hero-title" class="hero-title">
-            <span class="line"><span class="hero-in" style="--i: 1">Roushan Mufti</span></span>
-            <span class="line"><span class="hero-in" style="--i: 2">Mohammad</span></span>
-          </h1>
+      <!-- Cut-out photo: assets/photos/roushan-cutout.webp -->
+      <figure class="hero-photo">
+        <img src="assets/photos/roushan-cutout.webp" alt="Roushan Mufti Mohammad in a navy blazer" width="703" height="935" fetchpriority="high">
+      </figure>
 
-          <!-- Each phrase stays on one line; the gold "|" separators are added by styles.css -->
-          <p class="hero-headline hero-in" style="--i: 3">
-            <span class="headline-items">
-              <span>Finance Postgraduate</span>
-              <span>Delhi School of Economics</span>
-              <span>Aspiring Financial Analyst</span>
-            </span>
-          </p>
+      <div class="hero-layout">
+        <nav class="hero-nav" aria-label="Sections">
+          <ul>
+            <li><a href="#top">Home</a></li>
+            <li><a href="#about">About me</a></li>
+            <li><a href="#journey">Journey</a></li>
+          </ul>
+          <ul>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certifications">Credentials</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
 
-          <p class="hero-value hero-in" style="--i: 4">
-            Analytical and detail-oriented, with a grounding in international finance and
-            investment risk. Seeking entry-level roles in financial analysis, equity research,
-            and investment and corporate banking.
-          </p>
+        <!-- Key facts -->
+        <ul class="hero-stats">
+          <li class="glass stat-tile hero-in" style="--i: 4">
+            <span class="stat-num" data-count="2">2</span>
+            <span class="stat-label">Degrees, University <br>of Delhi</span>
+          </li>
+          <li class="glass stat-tile stat-tile-tall hero-in" style="--i: 5">
+            <span class="stat-num stat-num-big" data-count="6">6</span>
+            <span class="stat-label">Professional <br>certifications</span>
+          </li>
+        </ul>
 
-          <div class="hero-actions hero-in" style="--i: 5">
+        <div class="hero-center">
+          <p class="hero-heading hero-in" style="--i: 3">Finance, <br>Analysed <br>Closely.</p>
+          <div class="hero-actions hero-in" style="--i: 6">
             <!-- Hidden until assets/Roushan_Resume.pdf is uploaded; script.js shows it automatically -->
             <a class="btn btn-gold" href="assets/Roushan_Resume.pdf" download="Roushan_Mufti_Mohammad_Resume.pdf" data-requires-file hidden>Download Resume</a>
-            <a class="btn btn-outline-light" href="#contact">Contact Me</a>
+            <a class="btn btn-gold" href="#contact">Contact Me</a>
+            <!-- Shown only while the resume button is hidden -->
+            <a class="btn btn-gold btn-about" href="#about">About Me</a>
           </div>
         </div>
 
-        <div class="hero-visual hero-in" style="--i: 2">
-          <!-- Photo: assets/photos/roushan.jpg (upright, 4:5). If the file is ever
-               missing, the gold "RM" monogram is shown instead. -->
-          <figure class="portrait">
-            <img src="assets/photos/roushan.jpg" alt="Portrait of Roushan Mufti Mohammad in a navy blazer" width="680" height="850" fetchpriority="high" onerror="this.hidden = true">
-            <span class="portrait-fallback" aria-hidden="true">RM</span>
-          </figure>
+        <ul class="glass trait-card hero-in" style="--i: 5" aria-label="Strengths">
+          <li><svg aria-hidden="true"><use href="#i-chart"/></svg>Financial analysis</li>
+          <li><svg aria-hidden="true"><use href="#i-shield"/></svg>Investment risk</li>
+          <li><svg aria-hidden="true"><use href="#i-globe"/></svg>International finance</li>
+          <li><svg aria-hidden="true"><use href="#i-table"/></svg>Excel &amp; Bloomberg</li>
+          <li><svg aria-hidden="true"><use href="#i-book"/></svg>Preparing for CFA Level 1</li>
+        </ul>
 
-          <!-- Key facts -->
-          <ul class="stat-list">
-            <li class="stat-card stat-a">
-              <span class="stat-num" data-count="2">2</span>
-              <span class="stat-label">Degrees from the <br>University of Delhi</span>
-            </li>
-            <li class="stat-card stat-b">
-              <span class="stat-num" data-count="6">6</span>
-              <span class="stat-label">Professional <br>certifications</span>
-            </li>
-            <li class="stat-card stat-c">
-              <span class="stat-kicker">Currently</span>
-              <span class="stat-text">Preparing for CFA Level 1</span>
-            </li>
-          </ul>
+        <div class="hero-intro hero-in" style="--i: 7">
+          <p class="status-chip"><span class="status-dot" aria-hidden="true"></span>Available to join within one month</p>
+          <h1 id="hero-name">Roushan Mufti Mohammad</h1>
+          <!-- Each phrase stays on one line; the gold "|" separators are added by styles.css -->
+          <p class="hero-headline"><span class="headline-items"><span>Finance Postgraduate</span> <span>Delhi School of Economics</span> <span>Aspiring Financial Analyst</span></span></p>
         </div>
-      </div>
 
-      <!-- Moving strip of institutions (text only; it pauses on hover and stays still
-           for visitors who prefer less motion) -->
-      <div class="marquee" aria-label="Education and certifications">
-        <p class="marquee-caption">Education &amp; certifications</p>
-        <div class="marquee-window">
-          <ul class="marquee-track">
-            <li>Delhi School of Economics</li>
-            <li>University of Delhi</li>
-            <li>Asian Development Bank Institute</li>
-            <li>HarvardX</li>
-            <li>Coursera</li>
-            <li>Udemy</li>
-            <li>HP LIFE</li>
-            <li>CertiProf</li>
-          </ul>
-          <!-- Copy of the list so the strip loops without a gap (hidden from screen readers) -->
-          <ul class="marquee-track" aria-hidden="true">
-            <li>Delhi School of Economics</li>
-            <li>University of Delhi</li>
-            <li>Asian Development Bank Institute</li>
-            <li>HarvardX</li>
-            <li>Coursera</li>
-            <li>Udemy</li>
-            <li>HP LIFE</li>
-            <li>CertiProf</li>
-          </ul>
-        </div>
+        <p class="hero-value hero-in" style="--i: 8">
+          Analytical and detail-oriented, with a grounding in international finance and investment
+          risk. Seeking entry-level roles in financial analysis, equity research, and investment and
+          corporate banking.
+        </p>
       </div>
     </section>
 
     <!-- =====================================================================
-         2. ABOUT + 3. EDUCATION (shown as a journey timeline)
+         2. ABOUT + 3. EDUCATION (a journey along a curved line)
          ===================================================================== -->
     <section class="section" id="about" aria-labelledby="about-title">
-      <div class="container">
+      <div class="wrap">
         <div class="about-intro">
           <div class="about-text">
-            <p class="chip reveal">About me</p>
-            <h2 id="about-title" class="display mask"><span>About Me &amp; My Journey</span></h2>
+            <p class="pill reveal">About me</p>
+            <h2 id="about-title" class="display mask"><span>About Me (&amp;) <br>My Journey</span></h2>
             <p class="lead reveal">
-            I'm a finance postgraduate from the Delhi School of Economics with a
-            specialisation in Finance and a strong interest in markets, macroeconomics,
-            and how capital moves across borders. My coursework in international
-            financial management and risk has shaped an analytical, detail-oriented
-            approach to financial problems. I'm currently preparing for CFA Level 1 and
-            looking for roles in financial analysis, investment research, and banking
-            where I can contribute from day one and keep learning.
+              I'm a finance postgraduate from the Delhi School of Economics with a
+              specialisation in Finance and a strong interest in markets, macroeconomics,
+              and how capital moves across borders. My coursework in international
+              financial management and risk has shaped an analytical, detail-oriented
+              approach to financial problems. I'm currently preparing for CFA Level 1 and
+              looking for roles in financial analysis, investment research, and banking
+              where I can contribute from day one and keep learning.
             </p>
           </div>
           <figure class="about-photo reveal">
@@ -214,84 +260,113 @@
           </figure>
         </div>
 
-        <!-- Education timeline. The gold line fills in as the visitor scrolls. -->
         <h3 class="visually-hidden" id="journey-title">Education</h3>
-        <ol class="journey" id="journey" aria-labelledby="journey-title">
-          <li class="journey-item reveal">
-            <article class="journey-card">
-              <p class="journey-year">XII</p>
-              <h4>Class XII</h4>
-              <p>Completed school at Jamia Millia Islamia.</p>
-            </article>
-          </li>
-          <li class="journey-item reveal">
-            <article class="journey-card">
-              <p class="journey-year"><span aria-hidden="true">&rsquo;21</span><span class="visually-hidden">2021</span></p>
-              <h4>Starting the B.Com</h4>
-              <p>Began a Bachelor of Commerce at Shaheed Bhagat Singh College (Evening), University of Delhi.</p>
-              <p class="journey-meta">B.Com &middot; <time datetime="2021">2021</time>&ndash;<time datetime="2024">2024</time></p>
-            </article>
-          </li>
-          <li class="journey-item reveal">
-            <article class="journey-card">
-              <p class="journey-year"><span aria-hidden="true">&rsquo;24</span><span class="visually-hidden">2024</span></p>
-              <h4>On to the Delhi School of Economics</h4>
-              <p>Completed the B.Com and started an M.Com with a Finance specialisation at the
-                 Delhi School of Economics. Later that year I earned certifications in sustainable
-                 finance, GRC and data privacy, finance basics and Lean Six Sigma.</p>
-              <p class="journey-meta">M.Com (Finance) &middot; <time datetime="2024">2024</time>&ndash;<time datetime="2026">2026</time></p>
-            </article>
-          </li>
-          <li class="journey-item reveal">
-            <article class="journey-card">
-              <p class="journey-year"><span aria-hidden="true">&rsquo;26</span><span class="visually-hidden">2026</span></p>
-              <h4>Finance postgraduate</h4>
-              <p>Completed the M.Com (Finance specialisation) at the Delhi School of Economics,
-                 University of Delhi.</p>
-              <p class="coursework-label">Relevant coursework</p>
-              <ul class="tags">
-                <li>International Financial Management</li>
-                <li>International Financial System</li>
-                <li>Insurance Products and Practice</li>
-                <li>Strategic Management</li>
-                <li>Operations Research</li>
-                <li>Entrepreneurship &amp; New Venture Planning</li>
-              </ul>
-            </article>
-          </li>
-          <li class="journey-item journey-now reveal">
-            <article class="journey-card">
-              <p class="journey-year">Now <span class="status-dot" aria-hidden="true"></span></p>
-              <h4>Next: CFA Level 1 and a first role</h4>
-              <p>Preparing for CFA Level 1 and looking for entry-level roles in financial analysis,
-                 equity research and banking.</p>
-            </article>
-          </li>
-        </ol>
+        <div class="journey" id="journey">
+          <!-- The curved line is drawn by script.js to connect the cards, and fills in gold on scroll -->
+          <svg class="journey-path" aria-hidden="true" focusable="false">
+            <path class="journey-track"/>
+            <path class="journey-fill"/>
+            <g class="journey-dots"></g>
+          </svg>
+
+          <ol class="journey-list" aria-labelledby="journey-title">
+            <li class="journey-item">
+              <article class="glass journey-card reveal">
+                <p class="journey-year" aria-hidden="true">XII</p>
+                <h4>Class XII</h4>
+                <p>Completed school at Jamia Millia Islamia.</p>
+                <div class="journey-foot">
+                  <span class="badge" aria-hidden="true"><svg><use href="#i-book"/></svg></span>
+                  <p class="journey-meta">Jamia Millia Islamia <br>School</p>
+                </div>
+              </article>
+            </li>
+            <li class="journey-item">
+              <article class="glass journey-card reveal">
+                <p class="journey-year" aria-hidden="true">&rsquo;21</p>
+                <h4>Starting the B.Com</h4>
+                <p>Began a Bachelor of Commerce at Shaheed Bhagat Singh College (Evening), University of Delhi.</p>
+                <div class="journey-foot">
+                  <span class="badge" aria-hidden="true"><svg><use href="#i-cap"/></svg></span>
+                  <p class="journey-meta">B.Com <br><time datetime="2021">2021</time>&ndash;<time datetime="2024">2024</time></p>
+                </div>
+              </article>
+            </li>
+            <li class="journey-item">
+              <article class="glass journey-card reveal">
+                <p class="journey-year" aria-hidden="true">&rsquo;24</p>
+                <h4>On to the Delhi School of Economics</h4>
+                <p>Completed the B.Com and started an M.Com with a Finance specialisation at the
+                   Delhi School of Economics. Later that year I earned certifications in sustainable
+                   finance, GRC and data privacy, finance basics and Lean Six Sigma.</p>
+                <div class="journey-foot">
+                  <span class="badge" aria-hidden="true"><svg><use href="#i-cap"/></svg></span>
+                  <span class="badge" aria-hidden="true"><svg><use href="#i-award"/></svg></span>
+                  <p class="journey-meta">M.Com (Finance) <br><time datetime="2024">2024</time>&ndash;<time datetime="2026">2026</time></p>
+                </div>
+              </article>
+            </li>
+            <li class="journey-item">
+              <article class="glass journey-card reveal">
+                <p class="journey-year" aria-hidden="true">&rsquo;26</p>
+                <h4>Finance postgraduate</h4>
+                <p>Completed the M.Com (Finance specialisation) at the Delhi School of Economics,
+                   University of Delhi.</p>
+                <p class="coursework-label">Relevant coursework</p>
+                <ul class="tags">
+                  <li>International Financial Management</li>
+                  <li>International Financial System</li>
+                  <li>Insurance Products and Practice</li>
+                  <li>Strategic Management</li>
+                  <li>Operations Research</li>
+                  <li>Entrepreneurship &amp; New Venture Planning</li>
+                </ul>
+                <div class="journey-foot">
+                  <span class="badge" aria-hidden="true"><svg><use href="#i-cap"/></svg></span>
+                  <p class="journey-meta">Delhi School of Economics <br><time datetime="2026">2026</time></p>
+                </div>
+              </article>
+            </li>
+            <li class="journey-item journey-now">
+              <article class="glass journey-card reveal">
+                <p class="journey-year"><span aria-hidden="true">Now</span> <span class="status-dot" aria-hidden="true"></span></p>
+                <h4>Next: CFA Level 1 and a first role</h4>
+                <p>Preparing for CFA Level 1 and looking for entry-level roles in financial analysis,
+                   equity research and banking.</p>
+                <div class="journey-foot">
+                  <span class="badge badge-gold" aria-hidden="true"><svg><use href="#i-book"/></svg></span>
+                  <p class="journey-meta">Available to join <br>within one month</p>
+                </div>
+              </article>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 
     <!-- =====================================================================
-         4a. SKILLS
+         4a. SKILLS ("What You Get")
          ===================================================================== -->
-    <section class="section section-tint" id="skills" aria-labelledby="skills-title">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="chip reveal">Skills</p>
-            <h2 id="skills-title" class="display mask"><span>What I Bring</span></h2>
-          </div>
-          <p class="lead reveal">
-            A finance foundation from the Delhi School of Economics, backed by
-            certifications and the tools used in day-to-day analysis.
-          </p>
-        </div>
+    <section class="section skills" id="skills" aria-labelledby="skills-title">
+      <div class="wrap">
+        <h2 id="skills-title" class="display-xl mask"><span>What You Get</span></h2>
+        <p class="pill pill-center reveal">Skills overview</p>
+
+        <!-- Each gold chip points to the matching card below -->
+        <p class="skill-sentence reveal">
+          Careful financial analysis
+          <a class="chip" href="#skill-finance" data-lights="skill-finance"><svg aria-hidden="true"><use href="#i-chart"/></svg><span class="visually-hidden">See finance skills</span></a>,
+          everyday tools
+          <a class="chip" href="#skill-tools" data-lights="skill-tools"><svg aria-hidden="true"><use href="#i-table"/></svg><span class="visually-hidden">See tools</span></a>,
+          a little code
+          <a class="chip" href="#skill-technical" data-lights="skill-technical"><svg aria-hidden="true"><use href="#i-code"/></svg><span class="visually-hidden">See technical skills</span></a>
+          and a real curiosity about markets
+          <a class="chip" href="#skill-interests" data-lights="skill-interests"><svg aria-hidden="true"><use href="#i-globe"/></svg><span class="visually-hidden">See areas of interest</span></a>, combined.
+        </p>
 
         <div class="skill-grid">
-          <article class="card skill-card reveal">
-            <span class="skill-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
-            </span>
+          <article class="glass skill-card reveal" id="skill-finance">
+            <span class="skill-icon" aria-hidden="true"><svg><use href="#i-chart"/></svg></span>
             <h3>Finance</h3>
             <ul>
               <li>Financial statement analysis</li>
@@ -301,10 +376,8 @@
               <li>Commodity markets</li>
             </ul>
           </article>
-          <article class="card skill-card reveal">
-            <span class="skill-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg>
-            </span>
+          <article class="glass skill-card reveal" id="skill-tools">
+            <span class="skill-icon" aria-hidden="true"><svg><use href="#i-table"/></svg></span>
             <h3>Tools</h3>
             <ul>
               <li>Microsoft Excel (advanced)</li>
@@ -313,19 +386,15 @@
               <li>NSMART</li>
             </ul>
           </article>
-          <article class="card skill-card reveal">
-            <span class="skill-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
-            </span>
+          <article class="glass skill-card reveal" id="skill-technical">
+            <span class="skill-icon" aria-hidden="true"><svg><use href="#i-code"/></svg></span>
             <h3>Technical</h3>
             <ul>
               <li>Basic Python / Node.js scripting for data work</li>
             </ul>
           </article>
-          <article class="card skill-card reveal">
-            <span class="skill-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-            </span>
+          <article class="glass skill-card reveal" id="skill-interests">
+            <span class="skill-icon" aria-hidden="true"><svg><use href="#i-globe"/></svg></span>
             <h3>Areas of interest</h3>
             <ul>
               <li>Macroeconomics</li>
@@ -339,122 +408,143 @@
     </section>
 
     <!-- =====================================================================
-         4b. CERTIFICATIONS & WORKSHOPS (numbered cards)
+         4b. CERTIFICATIONS & WORKSHOPS (dark section, cards scroll sideways)
 
-         Each card can have:
-           - "Verify" = the issuer's online verification page (always shown if there is one)
-           - "View"   = the PDF in assets/certificates/. It stays hidden until that exact
-                        file is uploaded, then appears automatically (see script.js).
+         On each card:
+           - the gold arrow opens the issuer's verification page ("Verify"), or the
+             PDF in assets/certificates/ if there is no online verification
+           - "View certificate" (and file-only arrows) stay hidden until that exact
+             PDF is uploaded, then appear automatically (see script.js)
        ===================================================================== -->
-    <section class="section section-dark on-dark" id="certifications" aria-labelledby="certifications-title">
-      <div class="container">
-        <div class="section-head">
+    <section class="section section-dark" id="certifications" aria-labelledby="certifications-title" data-theme="dark">
+      <div class="wrap">
+        <div class="split-head">
           <div>
-            <p class="chip chip-dark reveal">Credentials</p>
-            <h2 id="certifications-title" class="display mask"><span>Certifications &amp; Training</span></h2>
+            <p class="pill pill-dark reveal">Selected credentials</p>
+            <h2 id="certifications-title" class="display mask"><span>Certified &amp; <br>Still Learning</span></h2>
           </div>
           <p class="lead reveal">
             Listed in order of relevance to finance roles. Where an issuer offers online
-            verification, the card links straight to it.
+            verification, the gold arrow opens it.
           </p>
         </div>
 
-        <p class="cfa-note reveal">
-          <span class="cfa-label">In progress</span>
-          <span>Preparing for CFA Level 1</span>
-        </p>
+        <div class="cred-bar">
+          <p class="cfa-note reveal"><span class="cfa-label">In progress</span> Preparing for CFA Level 1</p>
+          <div class="cred-controls">
+            <button type="button" class="round-btn" data-cred-scroll="-1"><svg aria-hidden="true"><use href="#i-left"/></svg><span class="visually-hidden">Previous cards</span></button>
+            <button type="button" class="round-btn" data-cred-scroll="1"><svg aria-hidden="true"><use href="#i-right"/></svg><span class="visually-hidden">Next cards</span></button>
+          </div>
+        </div>
 
-        <ol class="cred-grid">
-          <li class="cred-card reveal">
+        <ol class="cred-track" tabindex="0" aria-label="Certifications and workshop (scrolls sideways)">
+          <li class="cred-card" style="--tilt: -6deg">
             <div class="cred-top">
               <span class="cred-num">01</span>
               <span class="cred-tags"><span>Sustainable finance</span><span>Governance</span></span>
             </div>
-            <h3>Governing Sustainable Finance</h3>
-            <p class="cred-issuer">Asian Development Bank Institute (ADBI)</p>
-            <p class="cred-meta"><time datetime="2024-10">Oct 2024</time></p>
-            <p class="card-links">
-              <a href="https://elearning-adbi.org/certificate-verifier/?&amp;code=113794-173-009-7795" target="_blank" rel="noopener">Verify<span class="visually-hidden"> Governing Sustainable Finance certificate (opens in a new tab)</span></a>
-              <a href="assets/certificates/ADBI_Governing_Sustainable_Finance.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Governing Sustainable Finance certificate (PDF)</span></a>
-            </p>
+            <span class="cred-mark" aria-hidden="true">ADBI</span>
+            <div class="cred-bottom">
+              <h3>Governing Sustainable Finance</h3>
+              <p class="cred-issuer">Asian Development Bank Institute (ADBI)</p>
+              <p class="cred-meta"><time datetime="2024-10">Oct 2024</time></p>
+              <p class="cred-links">
+                <a class="cred-file" href="assets/certificates/ADBI_Governing_Sustainable_Finance.pdf" target="_blank" rel="noopener" data-requires-file hidden>View certificate<span class="visually-hidden"> (PDF)</span></a>
+                <a class="cred-arrow" href="https://elearning-adbi.org/certificate-verifier/?&amp;code=113794-173-009-7795" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">Verify Governing Sustainable Finance certificate (opens in a new tab)</span></a>
+              </p>
+            </div>
           </li>
 
-          <li class="cred-card reveal">
+          <li class="cred-card" style="--tilt: 4deg">
             <div class="cred-top">
               <span class="cred-num">02</span>
               <span class="cred-tags"><span>Risk</span><span>Investments</span></span>
             </div>
-            <h3>Investment Risk Management</h3>
-            <p class="cred-issuer">Coursera</p>
+            <span class="cred-mark" aria-hidden="true">Coursera</span>
+            <div class="cred-bottom">
+              <h3>Investment Risk Management</h3>
+              <p class="cred-issuer">Coursera</p>
+            </div>
           </li>
 
-          <li class="cred-card reveal">
+          <li class="cred-card" style="--tilt: -3deg">
             <div class="cred-top">
               <span class="cred-num">03</span>
               <span class="cred-tags"><span>Compliance</span><span>Data privacy</span></span>
             </div>
-            <h3>Governance, Risk and Compliance (GRC) and Data Privacy</h3>
-            <p class="cred-issuer">Udemy</p>
-            <p class="cred-meta"><time datetime="2024-11">Nov 2024</time> &middot; 11 hours</p>
-            <p class="card-links">
-              <a href="https://ude.my/UC-c26adada-5a1a-4a96-a35f-1781b96fab5f" target="_blank" rel="noopener">Verify<span class="visually-hidden"> GRC and Data Privacy certificate (opens in a new tab)</span></a>
-              <a href="assets/certificates/Udemy_GRC_Data_Privacy.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> GRC and Data Privacy certificate (PDF)</span></a>
-            </p>
+            <span class="cred-mark" aria-hidden="true">Udemy</span>
+            <div class="cred-bottom">
+              <h3>Governance, Risk and Compliance (GRC) and Data Privacy</h3>
+              <p class="cred-issuer">Udemy</p>
+              <p class="cred-meta"><time datetime="2024-11">Nov 2024</time> &middot; 11 hours</p>
+              <p class="cred-links">
+                <a class="cred-file" href="assets/certificates/Udemy_GRC_Data_Privacy.pdf" target="_blank" rel="noopener" data-requires-file hidden>View certificate<span class="visually-hidden"> (PDF)</span></a>
+                <a class="cred-arrow" href="https://ude.my/UC-c26adada-5a1a-4a96-a35f-1781b96fab5f" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">Verify GRC and Data Privacy certificate (opens in a new tab)</span></a>
+              </p>
+            </div>
           </li>
 
-          <li class="cred-card reveal">
+          <li class="cred-card" style="--tilt: 5deg">
             <div class="cred-top">
               <span class="cred-num">04</span>
               <span class="cred-tags"><span>Finance fundamentals</span></span>
             </div>
-            <h3>Basics of Finance</h3>
-            <p class="cred-issuer">HP LIFE (HP Foundation)</p>
-            <p class="cred-meta"><time datetime="2024-11">Nov 2024</time></p>
-            <p class="card-links">
-              <a href="assets/certificates/HP_LIFE_Basics_of_Finance.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Basics of Finance certificate (PDF)</span></a>
-            </p>
+            <span class="cred-mark" aria-hidden="true">HP LIFE</span>
+            <div class="cred-bottom">
+              <h3>Basics of Finance</h3>
+              <p class="cred-issuer">HP LIFE (HP Foundation)</p>
+              <p class="cred-meta"><time datetime="2024-11">Nov 2024</time></p>
+              <p class="cred-links">
+                <a class="cred-arrow" href="assets/certificates/HP_LIFE_Basics_of_Finance.pdf" target="_blank" rel="noopener" data-requires-file hidden><svg aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">View Basics of Finance certificate (PDF)</span></a>
+              </p>
+            </div>
           </li>
 
-          <li class="cred-card reveal">
+          <li class="cred-card" style="--tilt: -5deg">
             <div class="cred-top">
               <span class="cred-num">05</span>
               <span class="cred-tags"><span>Process improvement</span></span>
             </div>
-            <h3>Lean Six Sigma White Belt (LSSWB)</h3>
-            <p class="cred-issuer">CertiProf</p>
-            <p class="cred-meta"><time datetime="2024-09">Sep 2024</time> &middot; Valid until Sep 2027</p>
-            <p class="cred-meta">Certification ID: 100461743</p>
-            <p class="card-links">
-              <a href="assets/certificates/CertiProf_Lean_Six_Sigma_White_Belt.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Lean Six Sigma White Belt certificate (PDF)</span></a>
-            </p>
+            <span class="cred-mark" aria-hidden="true">CertiProf</span>
+            <div class="cred-bottom">
+              <h3>Lean Six Sigma White Belt (LSSWB)</h3>
+              <p class="cred-issuer">CertiProf</p>
+              <p class="cred-meta"><time datetime="2024-09">Sep 2024</time> &middot; Valid until Sep 2027</p>
+              <p class="cred-meta">Certification ID: 100461743</p>
+              <p class="cred-links">
+                <a class="cred-arrow" href="assets/certificates/CertiProf_Lean_Six_Sigma_White_Belt.pdf" target="_blank" rel="noopener" data-requires-file hidden><svg aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">View Lean Six Sigma White Belt certificate (PDF)</span></a>
+              </p>
+            </div>
           </li>
 
-          <li class="cred-card reveal">
+          <li class="cred-card" style="--tilt: 3deg">
             <div class="cred-top">
               <span class="cred-num">06</span>
               <span class="cred-tags"><span>Leadership</span></span>
             </div>
-            <h3>Leadership</h3>
-            <p class="cred-issuer">HarvardX</p>
+            <span class="cred-mark" aria-hidden="true">HarvardX</span>
+            <div class="cred-bottom">
+              <h3>Leadership</h3>
+              <p class="cred-issuer">HarvardX</p>
+            </div>
           </li>
-        </ol>
 
-        <!-- ----- Workshops ----- -->
-        <h3 class="subhead reveal">Workshops</h3>
-        <ul class="cred-grid">
-          <li class="cred-card reveal">
+          <li class="cred-card cred-card-workshop" style="--tilt: -4deg">
             <div class="cred-top">
               <span class="cred-num">W1</span>
-              <span class="cred-tags"><span>Generative AI</span><span>One day</span></span>
+              <span class="cred-tags"><span>Workshop</span><span>Generative AI</span></span>
             </div>
-            <h4 class="cred-title">Generative AI and ChatGPT Mastery</h4>
-            <p class="cred-issuer">IIT Delhi (Rendezvous 2024, conducted by World Technocon)</p>
-            <p class="cred-meta">One-day in-campus workshop &middot; <time datetime="2024-10">Oct 2024</time></p>
-            <p class="card-links">
-              <a href="assets/certificates/IIT_Delhi_GenAI_Workshop.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Generative AI and ChatGPT Mastery workshop certificate (PDF)</span></a>
-            </p>
+            <span class="cred-mark" aria-hidden="true">IIT Delhi</span>
+            <div class="cred-bottom">
+              <h3>Generative AI and ChatGPT Mastery</h3>
+              <p class="cred-issuer">IIT Delhi (Rendezvous 2024, conducted by World Technocon)</p>
+              <p class="cred-meta">One-day in-campus workshop &middot; <time datetime="2024-10">Oct 2024</time></p>
+              <p class="cred-links">
+                <a class="cred-arrow" href="assets/certificates/IIT_Delhi_GenAI_Workshop.pdf" target="_blank" rel="noopener" data-requires-file hidden><svg aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">View Generative AI and ChatGPT Mastery workshop certificate (PDF)</span></a>
+              </p>
+            </div>
           </li>
-        </ul>
+        </ol>
       </div>
     </section>
 
@@ -465,30 +555,32 @@
            1. Put each file (PDF / Excel) in assets/projects/
            2. Copy the <li> card below once per project, fill it in, and number it 01, 02, 03...
            3. Remove the two comment lines marked START and END
-           4. Switch on the "Projects" link in the navigation at the top
+           4. Add a "Projects" link to the menus if you like (href="#projects")
        ===================================================================== -->
     <!-- START: remove this line to switch on Projects
-    <section class="section" id="projects" aria-labelledby="projects-title">
-      <div class="container">
-        <div class="section-head">
+    <section class="section section-dark" id="projects" aria-labelledby="projects-title" data-theme="dark">
+      <div class="wrap">
+        <div class="split-head">
           <div>
-            <p class="chip reveal">Selected work</p>
+            <p class="pill pill-dark reveal">Selected work</p>
             <h2 id="projects-title" class="display mask"><span>Projects</span></h2>
           </div>
           <p class="lead reveal">Work samples: models, research notes and market analysis.</p>
         </div>
-        <ol class="project-grid">
-          <li class="project-card reveal">
+        <ol class="cred-track">
+          <li class="cred-card">
             <div class="cred-top">
               <span class="cred-num">01</span>
               <span class="cred-tags"><span>Valuation</span><span>Excel</span><span>NSE</span></span>
             </div>
-            <h3>Project title, e.g. DCF Valuation of an NSE-listed Company</h3>
-            <p>Two-line summary: what you analysed, with which data and method.</p>
-            <p class="project-finding"><strong>Key finding:</strong> one sentence with the result.</p>
-            <p class="card-links">
-              <a href="assets/projects/your-file.pdf" target="_blank" rel="noopener">View PDF</a>
-            </p>
+            <div class="cred-bottom">
+              <h3>Project title, e.g. DCF Valuation of an NSE-listed Company</h3>
+              <p class="cred-issuer">Two-line summary: what you analysed, with which data and method.</p>
+              <p class="cred-meta"><strong>Key finding:</strong> one sentence with the result.</p>
+              <p class="cred-links">
+                <a class="cred-arrow" href="assets/projects/your-file.pdf" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-arrow"/></svg><span class="visually-hidden">Open project (PDF)</span></a>
+              </p>
+            </div>
           </li>
         </ol>
       </div>
@@ -498,15 +590,18 @@
     <!-- =====================================================================
          6. LEADERSHIP & ACTIVITIES
          ===================================================================== -->
-    <section class="section" id="leadership" aria-labelledby="leadership-title">
-      <div class="container leadership-row">
+    <section class="section section-tight" id="leadership" aria-labelledby="leadership-title">
+      <div class="wrap leadership-row">
         <div>
-          <p class="chip reveal">Leadership</p>
+          <p class="pill reveal">Beyond the classroom</p>
           <h2 id="leadership-title" class="display mask"><span>Leadership &amp; Activities</span></h2>
         </div>
-        <article class="card role-card reveal">
-          <p class="role-title">Member</p>
-          <h3>Rotaract Club of Delhi School of Economics</h3>
+        <article class="glass role-card reveal">
+          <span class="skill-icon" aria-hidden="true"><svg><use href="#i-people"/></svg></span>
+          <div>
+            <p class="role-title">Member</p>
+            <h3>Rotaract Club of Delhi School of Economics</h3>
+          </div>
         </article>
       </div>
     </section>
@@ -515,51 +610,46 @@
          FAQ for recruiters. Each question opens and closes on click;
          edit the answers here.
          ===================================================================== -->
-    <section class="section section-tint" id="faq" aria-labelledby="faq-title">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="chip reveal">FAQ</p>
-            <h2 id="faq-title" class="display mask"><span>Questions Recruiters Ask</span></h2>
-          </div>
-          <p class="lead reveal">Quick answers on availability, location and fit.</p>
-        </div>
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <p class="pill reveal">FAQ</p>
+        <h2 id="faq-title" class="display mask"><span>Got Any <br>Questions?</span></h2>
 
         <div class="faq-grid">
-          <details class="faq-item reveal">
+          <details class="glass faq-item reveal">
             <summary><h3>What roles are you looking for?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
             <div class="faq-answer">
               <p>Entry-level roles in financial analysis, equity research, investment banking and
                  corporate banking, including at global capability centres (GCCs).</p>
             </div>
           </details>
-          <details class="faq-item reveal">
+          <details class="glass faq-item reveal">
             <summary><h3>When can you start?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
             <div class="faq-answer">
               <p>Within one month of accepting an offer.</p>
             </div>
           </details>
-          <details class="faq-item reveal">
+          <details class="glass faq-item reveal">
             <summary><h3>Are you open to relocating?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
             <div class="faq-answer">
               <p>Yes. I'm open to roles in major cities across India, in the UAE and the wider
                  Gulf region, and in Europe.</p>
             </div>
           </details>
-          <details class="faq-item reveal">
+          <details class="glass faq-item reveal">
             <summary><h3>Which tools do you work with?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
             <div class="faq-answer">
               <p>Microsoft Excel (advanced) and PowerPoint, Bloomberg and NSMART, plus basic
                  Python and Node.js scripting for data work.</p>
             </div>
           </details>
-          <details class="faq-item reveal">
+          <details class="glass faq-item reveal">
             <summary><h3>Where are you with the CFA?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
             <div class="faq-answer">
               <p>I'm preparing for CFA Level 1.</p>
             </div>
           </details>
-          <details class="faq-item reveal">
+          <details class="glass faq-item reveal">
             <summary><h3>How can I get your resume?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
             <div class="faq-answer">
               <p>Get in touch through the contact section below and I'll send my latest resume.</p>
@@ -572,11 +662,17 @@
     <!-- =====================================================================
          7. CONTACT
          ===================================================================== -->
-    <section class="section section-contact on-dark" id="contact" aria-labelledby="contact-title">
-      <div class="container contact-grid">
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-grid">
         <div class="contact-pitch">
-          <p class="chip chip-dark reveal">Contact</p>
-          <h2 id="contact-title" class="display mask"><span>Let&rsquo;s Talk</span></h2>
+          <p class="pill reveal">Contact</p>
+          <h2 id="contact-title" class="display-xl display-left mask"><span>Hiring for a <br><em>Finance Role?</em></span></h2>
+
+          <p class="lead reveal">
+            Open to entry-level roles in financial analysis, equity research, and investment
+            and corporate banking in India, the UAE / Gulf and Europe. Available to join within
+            one month.
+          </p>
 
           <!-- Decorative chat bubbles -->
           <div class="chat reveal" aria-hidden="true">
@@ -585,21 +681,15 @@
               <span class="chat-avatar-fallback">RM</span>
             </span>
             <div class="chat-bubbles">
-              <p class="chat-bubble">Hiring for a finance role?</p>
+              <p class="chat-bubble">Have a role in mind? Let&rsquo;s talk.</p>
               <p class="chat-bubble chat-typing"><span></span><span></span><span></span></p>
             </div>
           </div>
 
-          <p class="contact-intro reveal">
-            Open to entry-level roles in financial analysis, equity research, and investment
-            and corporate banking in India, the UAE / Gulf and Europe. Available to join within
-            one month.
-          </p>
-
           <div class="contact-methods reveal">
             <!-- Email: the address is put together by script.js only when the button is
                  clicked, so spam bots reading the page cannot collect it. -->
-            <div class="contact-row">
+            <div class="glass contact-row">
               <span class="contact-label">Email</span>
               <span class="contact-value" id="email-slot" aria-live="polite">
                 <button type="button" class="link-button" id="show-email">Show email address</button>
@@ -609,13 +699,13 @@
 
             <!-- LinkedIn: replace YOUR_LINKEDIN_ID below with your profile address.
                  It stays hidden while the placeholder is there. -->
-            <a class="contact-row" href="https://www.linkedin.com/in/YOUR_LINKEDIN_ID" target="_blank" rel="noopener" data-needs-setup hidden>
+            <a class="glass contact-row" href="https://www.linkedin.com/in/YOUR_LINKEDIN_ID" target="_blank" rel="noopener" data-needs-setup hidden>
               <span class="contact-label">LinkedIn</span>
               <span class="contact-value">View profile<span class="visually-hidden"> (opens in a new tab)</span></span>
             </a>
 
             <!-- Hidden until assets/Roushan_Resume.pdf is uploaded -->
-            <a class="contact-row" href="assets/Roushan_Resume.pdf" download="Roushan_Mufti_Mohammad_Resume.pdf" data-requires-file hidden>
+            <a class="glass contact-row" href="assets/Roushan_Resume.pdf" download="Roushan_Mufti_Mohammad_Resume.pdf" data-requires-file hidden>
               <span class="contact-label">Resume</span>
               <span class="contact-value">Download PDF</span>
             </a>
@@ -655,9 +745,9 @@
 
   </main>
 
-  <footer class="site-footer on-dark">
-    <div class="container">
-      <p class="footer-wordmark" aria-hidden="true">Roushan Mufti Mohammad</p>
+  <footer class="site-footer" data-theme="dark">
+    <div class="wrap">
+      <p class="footer-wordmark" aria-hidden="true">Roushan</p>
       <div class="footer-bottom">
         <p>&copy; <span id="year">2026</span> Roushan Mufti Mohammad &middot; Delhi, India</p>
         <p><a href="#top">Back to top</a></p>
