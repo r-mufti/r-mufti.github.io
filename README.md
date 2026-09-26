@@ -10,10 +10,17 @@ Live at: https://roushanmufti.in
 | --- | --- |
 | `index.html` | All the page content (text, sections, links) |
 | `styles.css` | Colours, fonts and layout. Colours are at the top of the file |
-| `script.js` | Small helpers: hidden-until-uploaded buttons, email button, contact form, mobile menu, fade-in |
-| `assets/` | Resume, certificates, icons and the link-preview image |
+| `script.js` | Small helpers: hidden-until-uploaded buttons, email and copy buttons, contact form, mobile menu, light animation |
+| `assets/` | Photo, resume, certificates, icons and the link-preview image |
 | `CNAME` | Tells GitHub Pages to use the domain `roushanmufti.in` |
 | `_config.yml` | Keeps `README.md` and `CLAUDE.md` off the live site |
+
+## Adding your photo
+
+Upload a portrait photo as `assets/photos/roushan.jpg` (upright, roughly
+900 × 1125 pixels, under about 300 KB). It appears in the arch-shaped frame
+at the top of the page and next to the chat bubble in the contact section.
+Until it is uploaded, a gold "RM" monogram is shown instead.
 
 ## Adding the resume and certificates
 
@@ -45,6 +52,12 @@ there, that item stays hidden, so visitors never see a broken link.
 
 The email address is never written in the page. It is put together only
 when a visitor clicks "Show email address", which keeps it away from spam bots.
+
+## Editing the FAQ
+
+The recruiter questions and answers are in `index.html`, in the section
+that starts with the comment `FAQ for recruiters`. Edit the text between
+`<h3>` and `</h3>` for a question, and inside `<p>` for its answer.
 
 ## Adding projects
 
