@@ -6,7 +6,7 @@
 
   <!-- ===== Page title and search-engine description ===== -->
   <title>Roushan Mufti Mohammad | Finance Postgraduate, Delhi School of Economics</title>
-  <meta name="description" content="Roushan Mufti Mohammad is a finance postgraduate (M.Com, Finance) from the Delhi School of Economics, seeking entry-level roles in financial analysis, equity research, and investment and corporate banking in India and the UAE / Gulf.">
+  <meta name="description" content="Roushan Mufti Mohammad is a finance postgraduate (M.Com, Finance) from the Delhi School of Economics, seeking entry-level roles in financial analysis, equity research, and investment and corporate banking in India, the Gulf and Europe.">
   <link rel="canonical" href="https://roushanmufti.in/">
   <meta name="theme-color" content="#0B1F3A">
 
@@ -35,7 +35,7 @@
 
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Marks the page as "JavaScript available" so fade-in animations only apply when they can run -->
+  <!-- Marks the page as "JavaScript available" so animations only apply when they can run -->
   <script>document.documentElement.classList.add('js');</script>
   <script src="script.js" defer></script>
 
@@ -46,6 +46,7 @@
     "@type": "Person",
     "name": "Roushan Mufti Mohammad",
     "url": "https://roushanmufti.in/",
+    "image": "https://roushanmufti.in/assets/photos/roushan.jpg",
     "description": "Finance Postgraduate | Delhi School of Economics | Aspiring Financial Analyst",
     "address": { "@type": "PostalAddress", "addressLocality": "Delhi", "addressCountry": "IN" },
     "alumniOf": [
@@ -60,33 +61,35 @@
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <!-- =====================================================================
-       HEADER AND NAVIGATION
+       HEADER: floating navigation bar
        ===================================================================== -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#top">
-        <span class="brand-mark" aria-hidden="true">RM</span>
-        <span class="brand-name">Roushan Mufti Mohammad</span>
-      </a>
+    <div class="container">
+      <div class="header-bar">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">RM</span>
+          <span class="brand-name">Roushan Mufti Mohammad</span>
+        </a>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="nav-toggle-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Menu</span>
-      </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Menu</span>
+        </button>
 
-      <nav id="site-nav" class="site-nav" aria-label="Main">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-          <!-- When the Projects section below is switched on, also switch on this link:
-          <li><a href="#projects">Projects</a></li>
-          -->
-          <li><a href="#leadership">Leadership</a></li>
-          <li><a class="nav-cta" href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+        <nav id="site-nav" class="site-nav" aria-label="Main">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#journey">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <!-- When the Projects section below is switched on, also switch on this link:
+            <li><a href="#projects">Projects</a></li>
+            -->
+            <li><a href="#faq">FAQ</a></li>
+            <li><a class="nav-cta" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -96,68 +99,107 @@
          1. HERO
          ===================================================================== -->
     <section class="hero on-dark" id="top" aria-labelledby="hero-title">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <p class="hero-eyebrow">Delhi, India</p>
-          <h1 id="hero-title">Roushan Mufti Mohammad</h1>
+      <div class="container hero-grid">
+
+        <div class="hero-copy">
+          <p class="status-chip hero-in" style="--i: 0">
+            <span class="status-dot" aria-hidden="true"></span>
+            Available to join within one month
+          </p>
+
+          <h1 id="hero-title" class="hero-title">
+            <span class="line"><span class="hero-in" style="--i: 1">Roushan Mufti</span></span>
+            <span class="line"><span class="hero-in" style="--i: 2">Mohammad</span></span>
+          </h1>
+
           <!-- Each phrase stays on one line; the gold "|" separators are added by styles.css -->
-          <p class="hero-headline">
+          <p class="hero-headline hero-in" style="--i: 3">
             <span class="headline-items">
               <span>Finance Postgraduate</span>
               <span>Delhi School of Economics</span>
               <span>Aspiring Financial Analyst</span>
             </span>
           </p>
-          <p class="hero-value">
+
+          <p class="hero-value hero-in" style="--i: 4">
             Analytical and detail-oriented, with a grounding in international finance and
             investment risk. Seeking entry-level roles in financial analysis, equity research,
             and investment and corporate banking.
           </p>
-          <div class="hero-actions">
+
+          <div class="hero-actions hero-in" style="--i: 5">
             <!-- Hidden until assets/Roushan_Resume.pdf is uploaded; script.js shows it automatically -->
             <a class="btn btn-gold" href="assets/Roushan_Resume.pdf" download="Roushan_Mufti_Mohammad_Resume.pdf" data-requires-file hidden>Download Resume</a>
             <a class="btn btn-outline-light" href="#contact">Contact Me</a>
           </div>
         </div>
 
-        <aside class="glance" aria-labelledby="glance-title">
-          <h2 id="glance-title" class="glance-title">At a glance</h2>
-          <dl>
-            <div>
-              <dt>Education</dt>
-              <dd>M.Com (Finance), Delhi School of Economics</dd>
-            </div>
-            <div>
-              <dt>Focus</dt>
-              <dd>Financial statement analysis, investment risk, international finance</dd>
-            </div>
-            <div>
-              <dt>Tools</dt>
-              <dd>Excel (advanced), PowerPoint, Bloomberg</dd>
-            </div>
-            <div>
-              <dt>Currently</dt>
-              <dd>Preparing for CFA Level 1</dd>
-            </div>
-            <div>
-              <dt>Open to</dt>
-              <dd>India (including GCCs) and the UAE / Gulf</dd>
-            </div>
-          </dl>
-        </aside>
+        <div class="hero-visual hero-in" style="--i: 2">
+          <!-- Photo: assets/photos/roushan.jpg (upright, 4:5). If the file is ever
+               missing, the gold "RM" monogram is shown instead. -->
+          <figure class="portrait">
+            <img src="assets/photos/roushan.jpg" alt="Portrait of Roushan Mufti Mohammad in a navy blazer" width="680" height="850" fetchpriority="high" onerror="this.hidden = true">
+            <span class="portrait-fallback" aria-hidden="true">RM</span>
+          </figure>
+
+          <!-- Key facts -->
+          <ul class="stat-list">
+            <li class="stat-card stat-a">
+              <span class="stat-num" data-count="2">2</span>
+              <span class="stat-label">Degrees from the <br>University of Delhi</span>
+            </li>
+            <li class="stat-card stat-b">
+              <span class="stat-num" data-count="6">6</span>
+              <span class="stat-label">Professional <br>certifications</span>
+            </li>
+            <li class="stat-card stat-c">
+              <span class="stat-kicker">Currently</span>
+              <span class="stat-text">Preparing for CFA Level 1</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Moving strip of institutions (text only; it pauses on hover and stays still
+           for visitors who prefer less motion) -->
+      <div class="marquee" aria-label="Education and certifications">
+        <p class="marquee-caption">Education &amp; certifications</p>
+        <div class="marquee-window">
+          <ul class="marquee-track">
+            <li>Delhi School of Economics</li>
+            <li>University of Delhi</li>
+            <li>Asian Development Bank Institute</li>
+            <li>HarvardX</li>
+            <li>Coursera</li>
+            <li>Udemy</li>
+            <li>HP LIFE</li>
+            <li>CertiProf</li>
+          </ul>
+          <!-- Copy of the list so the strip loops without a gap (hidden from screen readers) -->
+          <ul class="marquee-track" aria-hidden="true">
+            <li>Delhi School of Economics</li>
+            <li>University of Delhi</li>
+            <li>Asian Development Bank Institute</li>
+            <li>HarvardX</li>
+            <li>Coursera</li>
+            <li>Udemy</li>
+            <li>HP LIFE</li>
+            <li>CertiProf</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <!-- =====================================================================
-         2. ABOUT
+         2. ABOUT + 3. EDUCATION (shown as a journey timeline)
          ===================================================================== -->
     <section class="section" id="about" aria-labelledby="about-title">
-      <div class="container section-grid">
-        <div class="section-heading">
-          <h2 id="about-title">About</h2>
-        </div>
-        <div class="section-body reveal">
-          <p class="lead">
+      <div class="container">
+        <div class="about-intro">
+          <div class="about-text">
+            <p class="chip reveal">About me</p>
+            <h2 id="about-title" class="display mask"><span>About Me &amp; My Journey</span></h2>
+            <p class="lead reveal">
             I'm a finance postgraduate from the Delhi School of Economics with a
             specialisation in Finance and a strong interest in markets, macroeconomics,
             and how capital moves across borders. My coursework in international
@@ -165,25 +207,47 @@
             approach to financial problems. I'm currently preparing for CFA Level 1 and
             looking for roles in financial analysis, investment research, and banking
             where I can contribute from day one and keep learning.
-          </p>
+            </p>
+          </div>
+          <figure class="about-photo reveal">
+            <img src="assets/photos/roushan-campus.jpg" alt="Roushan Mufti Mohammad in a navy suit outside the Sir Shanker Lal Concert Hall" width="660" height="825" loading="lazy">
+          </figure>
         </div>
-      </div>
-    </section>
 
-    <!-- =====================================================================
-         3. EDUCATION (timeline)
-         ===================================================================== -->
-    <section class="section" id="education" aria-labelledby="education-title">
-      <div class="container section-grid">
-        <div class="section-heading">
-          <h2 id="education-title">Education</h2>
-        </div>
-        <div class="section-body">
-          <ol class="timeline">
-            <li class="timeline-item reveal">
-              <p class="timeline-date"><time datetime="2024">2024</time>&ndash;<time datetime="2026">2026</time></p>
-              <h3>M.Com (Finance specialisation)</h3>
-              <p class="institution">Delhi School of Economics, University of Delhi</p>
+        <!-- Education timeline. The gold line fills in as the visitor scrolls. -->
+        <h3 class="visually-hidden" id="journey-title">Education</h3>
+        <ol class="journey" id="journey" aria-labelledby="journey-title">
+          <li class="journey-item reveal">
+            <article class="journey-card">
+              <p class="journey-year">XII</p>
+              <h4>Class XII</h4>
+              <p>Completed school at Jamia Millia Islamia.</p>
+            </article>
+          </li>
+          <li class="journey-item reveal">
+            <article class="journey-card">
+              <p class="journey-year"><span aria-hidden="true">&rsquo;21</span><span class="visually-hidden">2021</span></p>
+              <h4>Starting the B.Com</h4>
+              <p>Began a Bachelor of Commerce at Shaheed Bhagat Singh College (Evening), University of Delhi.</p>
+              <p class="journey-meta">B.Com &middot; <time datetime="2021">2021</time>&ndash;<time datetime="2024">2024</time></p>
+            </article>
+          </li>
+          <li class="journey-item reveal">
+            <article class="journey-card">
+              <p class="journey-year"><span aria-hidden="true">&rsquo;24</span><span class="visually-hidden">2024</span></p>
+              <h4>On to the Delhi School of Economics</h4>
+              <p>Completed the B.Com and started an M.Com with a Finance specialisation at the
+                 Delhi School of Economics. Later that year I earned certifications in sustainable
+                 finance, GRC and data privacy, finance basics and Lean Six Sigma.</p>
+              <p class="journey-meta">M.Com (Finance) &middot; <time datetime="2024">2024</time>&ndash;<time datetime="2026">2026</time></p>
+            </article>
+          </li>
+          <li class="journey-item reveal">
+            <article class="journey-card">
+              <p class="journey-year"><span aria-hidden="true">&rsquo;26</span><span class="visually-hidden">2026</span></p>
+              <h4>Finance postgraduate</h4>
+              <p>Completed the M.Com (Finance specialisation) at the Delhi School of Economics,
+                 University of Delhi.</p>
               <p class="coursework-label">Relevant coursework</p>
               <ul class="tags">
                 <li>International Financial Management</li>
@@ -193,149 +257,204 @@
                 <li>Operations Research</li>
                 <li>Entrepreneurship &amp; New Venture Planning</li>
               </ul>
-            </li>
-            <li class="timeline-item reveal">
-              <p class="timeline-date"><time datetime="2021">2021</time>&ndash;<time datetime="2024">2024</time></p>
-              <h3>B.Com</h3>
-              <p class="institution">Shaheed Bhagat Singh College (Evening), University of Delhi</p>
-            </li>
-            <li class="timeline-item reveal">
-              <p class="timeline-date">School</p>
-              <h3>Class XII</h3>
-              <p class="institution">Jamia Millia Islamia</p>
-            </li>
-          </ol>
+            </article>
+          </li>
+          <li class="journey-item journey-now reveal">
+            <article class="journey-card">
+              <p class="journey-year">Now <span class="status-dot" aria-hidden="true"></span></p>
+              <h4>Next: CFA Level 1 and a first role</h4>
+              <p>Preparing for CFA Level 1 and looking for entry-level roles in financial analysis,
+                 equity research and banking.</p>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4a. SKILLS
+         ===================================================================== -->
+    <section class="section section-tint" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="chip reveal">Skills</p>
+            <h2 id="skills-title" class="display mask"><span>What I Bring</span></h2>
+          </div>
+          <p class="lead reveal">
+            A finance foundation from the Delhi School of Economics, backed by
+            certifications and the tools used in day-to-day analysis.
+          </p>
+        </div>
+
+        <div class="skill-grid">
+          <article class="card skill-card reveal">
+            <span class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+            </span>
+            <h3>Finance</h3>
+            <ul>
+              <li>Financial statement analysis</li>
+              <li>Investment risk management</li>
+              <li>International finance</li>
+              <li>Macroeconomic analysis</li>
+              <li>Commodity markets</li>
+            </ul>
+          </article>
+          <article class="card skill-card reveal">
+            <span class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg>
+            </span>
+            <h3>Tools</h3>
+            <ul>
+              <li>Microsoft Excel (advanced)</li>
+              <li>Microsoft PowerPoint</li>
+              <li>Bloomberg</li>
+              <li>NSMART</li>
+            </ul>
+          </article>
+          <article class="card skill-card reveal">
+            <span class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+            </span>
+            <h3>Technical</h3>
+            <ul>
+              <li>Basic Python / Node.js scripting for data work</li>
+            </ul>
+          </article>
+          <article class="card skill-card reveal">
+            <span class="skill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+            </span>
+            <h3>Areas of interest</h3>
+            <ul>
+              <li>Macroeconomics</li>
+              <li>Commodities</li>
+              <li>Fintech</li>
+              <li>Digital assets and stablecoins</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- =====================================================================
-         4. SKILLS & CERTIFICATIONS
-         ===================================================================== -->
-    <section class="section section-tint" id="skills" aria-labelledby="skills-title">
-      <div class="container section-grid">
-        <div class="section-heading">
-          <h2 id="skills-title">Skills &amp; Certifications</h2>
-        </div>
-        <div class="section-body">
+         4b. CERTIFICATIONS & WORKSHOPS (numbered cards)
 
-          <h3 class="subhead">Skills</h3>
-          <div class="skill-grid">
-            <article class="card skill-card reveal">
-              <h4>Finance</h4>
-              <ul>
-                <li>Financial statement analysis</li>
-                <li>Investment risk management</li>
-                <li>International finance</li>
-                <li>Macroeconomic analysis</li>
-                <li>Commodity markets</li>
-              </ul>
-            </article>
-            <article class="card skill-card reveal">
-              <h4>Tools</h4>
-              <ul>
-                <li>Microsoft Excel (advanced)</li>
-                <li>Microsoft PowerPoint</li>
-                <li>Bloomberg</li>
-                <li>NSMART</li>
-              </ul>
-            </article>
-            <article class="card skill-card reveal">
-              <h4>Technical</h4>
-              <ul>
-                <li>Basic Python / Node.js scripting for data work</li>
-              </ul>
-            </article>
-            <article class="card skill-card reveal">
-              <h4>Areas of interest</h4>
-              <ul>
-                <li>Macroeconomics</li>
-                <li>Commodities</li>
-                <li>Fintech</li>
-                <li>Digital assets and stablecoins</li>
-              </ul>
-            </article>
+         Each card can have:
+           - "Verify" = the issuer's online verification page (always shown if there is one)
+           - "View"   = the PDF in assets/certificates/. It stays hidden until that exact
+                        file is uploaded, then appears automatically (see script.js).
+       ===================================================================== -->
+    <section class="section section-dark on-dark" id="certifications" aria-labelledby="certifications-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="chip chip-dark reveal">Credentials</p>
+            <h2 id="certifications-title" class="display mask"><span>Certifications &amp; Training</span></h2>
           </div>
-
-          <!-- ----- Certifications ----- -->
-          <h3 class="subhead" id="certifications">Certifications</h3>
-
-          <p class="cfa-note reveal">
-            <span class="cfa-label">In progress</span>
-            <span>Preparing for CFA Level 1</span>
+          <p class="lead reveal">
+            Listed in order of relevance to finance roles. Where an issuer offers online
+            verification, the card links straight to it.
           </p>
-
-          <!--
-            Each certificate card has:
-              - "Verify" = the issuer's online verification page (always shown if there is one)
-              - "View"   = the PDF in assets/certificates/. It stays hidden until that exact
-                           file is uploaded, then appears automatically (see script.js).
-          -->
-          <ul class="cert-grid">
-            <li class="card cert-card reveal">
-              <h4>Governing Sustainable Finance</h4>
-              <p class="cert-issuer">Asian Development Bank Institute (ADBI)</p>
-              <p class="cert-meta"><time datetime="2024-10">Oct 2024</time></p>
-              <p class="card-links">
-                <a href="https://elearning-adbi.org/certificate-verifier/?&amp;code=113794-173-009-7795" target="_blank" rel="noopener">Verify<span class="visually-hidden"> Governing Sustainable Finance certificate (opens in a new tab)</span></a>
-                <a href="assets/certificates/ADBI_Governing_Sustainable_Finance.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Governing Sustainable Finance certificate (PDF)</span></a>
-              </p>
-            </li>
-
-            <li class="card cert-card reveal">
-              <h4>Investment Risk Management</h4>
-              <p class="cert-issuer">Coursera</p>
-            </li>
-
-            <li class="card cert-card reveal">
-              <h4>Governance, Risk and Compliance (GRC) and Data Privacy</h4>
-              <p class="cert-issuer">Udemy</p>
-              <p class="cert-meta"><time datetime="2024-11">Nov 2024</time> &middot; 11 hours</p>
-              <p class="card-links">
-                <a href="https://ude.my/UC-c26adada-5a1a-4a96-a35f-1781b96fab5f" target="_blank" rel="noopener">Verify<span class="visually-hidden"> GRC and Data Privacy certificate (opens in a new tab)</span></a>
-                <a href="assets/certificates/Udemy_GRC_Data_Privacy.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> GRC and Data Privacy certificate (PDF)</span></a>
-              </p>
-            </li>
-
-            <li class="card cert-card reveal">
-              <h4>Basics of Finance</h4>
-              <p class="cert-issuer">HP LIFE (HP Foundation)</p>
-              <p class="cert-meta"><time datetime="2024-11">Nov 2024</time></p>
-              <p class="card-links">
-                <a href="assets/certificates/HP_LIFE_Basics_of_Finance.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Basics of Finance certificate (PDF)</span></a>
-              </p>
-            </li>
-
-            <li class="card cert-card reveal">
-              <h4>Lean Six Sigma White Belt (LSSWB)</h4>
-              <p class="cert-issuer">CertiProf</p>
-              <p class="cert-meta"><time datetime="2024-09">Sep 2024</time> &middot; Valid until Sep 2027</p>
-              <p class="cert-meta">Certification ID: 100461743</p>
-              <p class="card-links">
-                <a href="assets/certificates/CertiProf_Lean_Six_Sigma_White_Belt.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Lean Six Sigma White Belt certificate (PDF)</span></a>
-              </p>
-            </li>
-
-            <li class="card cert-card reveal">
-              <h4>Leadership</h4>
-              <p class="cert-issuer">HarvardX</p>
-            </li>
-          </ul>
-
-          <!-- ----- Workshops ----- -->
-          <h3 class="subhead">Workshops</h3>
-          <ul class="cert-grid">
-            <li class="card cert-card reveal">
-              <h4>Generative AI and ChatGPT Mastery</h4>
-              <p class="cert-issuer">IIT Delhi (Rendezvous 2024, conducted by World Technocon)</p>
-              <p class="cert-meta">One-day in-campus workshop &middot; <time datetime="2024-10">Oct 2024</time></p>
-              <p class="card-links">
-                <a href="assets/certificates/IIT_Delhi_GenAI_Workshop.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Generative AI and ChatGPT Mastery workshop certificate (PDF)</span></a>
-              </p>
-            </li>
-          </ul>
-
         </div>
+
+        <p class="cfa-note reveal">
+          <span class="cfa-label">In progress</span>
+          <span>Preparing for CFA Level 1</span>
+        </p>
+
+        <ol class="cred-grid">
+          <li class="cred-card reveal">
+            <div class="cred-top">
+              <span class="cred-num">01</span>
+              <span class="cred-tags"><span>Sustainable finance</span><span>Governance</span></span>
+            </div>
+            <h3>Governing Sustainable Finance</h3>
+            <p class="cred-issuer">Asian Development Bank Institute (ADBI)</p>
+            <p class="cred-meta"><time datetime="2024-10">Oct 2024</time></p>
+            <p class="card-links">
+              <a href="https://elearning-adbi.org/certificate-verifier/?&amp;code=113794-173-009-7795" target="_blank" rel="noopener">Verify<span class="visually-hidden"> Governing Sustainable Finance certificate (opens in a new tab)</span></a>
+              <a href="assets/certificates/ADBI_Governing_Sustainable_Finance.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Governing Sustainable Finance certificate (PDF)</span></a>
+            </p>
+          </li>
+
+          <li class="cred-card reveal">
+            <div class="cred-top">
+              <span class="cred-num">02</span>
+              <span class="cred-tags"><span>Risk</span><span>Investments</span></span>
+            </div>
+            <h3>Investment Risk Management</h3>
+            <p class="cred-issuer">Coursera</p>
+          </li>
+
+          <li class="cred-card reveal">
+            <div class="cred-top">
+              <span class="cred-num">03</span>
+              <span class="cred-tags"><span>Compliance</span><span>Data privacy</span></span>
+            </div>
+            <h3>Governance, Risk and Compliance (GRC) and Data Privacy</h3>
+            <p class="cred-issuer">Udemy</p>
+            <p class="cred-meta"><time datetime="2024-11">Nov 2024</time> &middot; 11 hours</p>
+            <p class="card-links">
+              <a href="https://ude.my/UC-c26adada-5a1a-4a96-a35f-1781b96fab5f" target="_blank" rel="noopener">Verify<span class="visually-hidden"> GRC and Data Privacy certificate (opens in a new tab)</span></a>
+              <a href="assets/certificates/Udemy_GRC_Data_Privacy.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> GRC and Data Privacy certificate (PDF)</span></a>
+            </p>
+          </li>
+
+          <li class="cred-card reveal">
+            <div class="cred-top">
+              <span class="cred-num">04</span>
+              <span class="cred-tags"><span>Finance fundamentals</span></span>
+            </div>
+            <h3>Basics of Finance</h3>
+            <p class="cred-issuer">HP LIFE (HP Foundation)</p>
+            <p class="cred-meta"><time datetime="2024-11">Nov 2024</time></p>
+            <p class="card-links">
+              <a href="assets/certificates/HP_LIFE_Basics_of_Finance.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Basics of Finance certificate (PDF)</span></a>
+            </p>
+          </li>
+
+          <li class="cred-card reveal">
+            <div class="cred-top">
+              <span class="cred-num">05</span>
+              <span class="cred-tags"><span>Process improvement</span></span>
+            </div>
+            <h3>Lean Six Sigma White Belt (LSSWB)</h3>
+            <p class="cred-issuer">CertiProf</p>
+            <p class="cred-meta"><time datetime="2024-09">Sep 2024</time> &middot; Valid until Sep 2027</p>
+            <p class="cred-meta">Certification ID: 100461743</p>
+            <p class="card-links">
+              <a href="assets/certificates/CertiProf_Lean_Six_Sigma_White_Belt.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Lean Six Sigma White Belt certificate (PDF)</span></a>
+            </p>
+          </li>
+
+          <li class="cred-card reveal">
+            <div class="cred-top">
+              <span class="cred-num">06</span>
+              <span class="cred-tags"><span>Leadership</span></span>
+            </div>
+            <h3>Leadership</h3>
+            <p class="cred-issuer">HarvardX</p>
+          </li>
+        </ol>
+
+        <!-- ----- Workshops ----- -->
+        <h3 class="subhead reveal">Workshops</h3>
+        <ul class="cred-grid">
+          <li class="cred-card reveal">
+            <div class="cred-top">
+              <span class="cred-num">W1</span>
+              <span class="cred-tags"><span>Generative AI</span><span>One day</span></span>
+            </div>
+            <h4 class="cred-title">Generative AI and ChatGPT Mastery</h4>
+            <p class="cred-issuer">IIT Delhi (Rendezvous 2024, conducted by World Technocon)</p>
+            <p class="cred-meta">One-day in-campus workshop &middot; <time datetime="2024-10">Oct 2024</time></p>
+            <p class="card-links">
+              <a href="assets/certificates/IIT_Delhi_GenAI_Workshop.pdf" target="_blank" rel="noopener" data-requires-file hidden>View<span class="visually-hidden"> Generative AI and ChatGPT Mastery workshop certificate (PDF)</span></a>
+            </p>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -344,28 +463,34 @@
 
          To switch it on:
            1. Put each file (PDF / Excel) in assets/projects/
-           2. Copy the <li> card below once per project and fill it in
+           2. Copy the <li> card below once per project, fill it in, and number it 01, 02, 03...
            3. Remove the two comment lines marked START and END
            4. Switch on the "Projects" link in the navigation at the top
        ===================================================================== -->
     <!-- START: remove this line to switch on Projects
     <section class="section" id="projects" aria-labelledby="projects-title">
-      <div class="container section-grid">
-        <div class="section-heading">
-          <h2 id="projects-title">Projects</h2>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="chip reveal">Selected work</p>
+            <h2 id="projects-title" class="display mask"><span>Projects</span></h2>
+          </div>
+          <p class="lead reveal">Work samples: models, research notes and market analysis.</p>
         </div>
-        <div class="section-body">
-          <ul class="project-grid">
-            <li class="card project-card reveal">
-              <h3>Project title, e.g. DCF Valuation of an NSE-listed Company</h3>
-              <p>Two-line summary: what you analysed, with which data and method.</p>
-              <p class="project-finding"><strong>Key finding:</strong> one sentence with the result.</p>
-              <p class="card-links">
-                <a href="assets/projects/your-file.pdf" target="_blank" rel="noopener">View PDF</a>
-              </p>
-            </li>
-          </ul>
-        </div>
+        <ol class="project-grid">
+          <li class="project-card reveal">
+            <div class="cred-top">
+              <span class="cred-num">01</span>
+              <span class="cred-tags"><span>Valuation</span><span>Excel</span><span>NSE</span></span>
+            </div>
+            <h3>Project title, e.g. DCF Valuation of an NSE-listed Company</h3>
+            <p>Two-line summary: what you analysed, with which data and method.</p>
+            <p class="project-finding"><strong>Key finding:</strong> one sentence with the result.</p>
+            <p class="card-links">
+              <a href="assets/projects/your-file.pdf" target="_blank" rel="noopener">View PDF</a>
+            </p>
+          </li>
+        </ol>
       </div>
     </section>
     END: remove this line to switch on Projects -->
@@ -374,15 +499,72 @@
          6. LEADERSHIP & ACTIVITIES
          ===================================================================== -->
     <section class="section" id="leadership" aria-labelledby="leadership-title">
-      <div class="container section-grid">
-        <div class="section-heading">
-          <h2 id="leadership-title">Leadership &amp; Activities</h2>
+      <div class="container leadership-row">
+        <div>
+          <p class="chip reveal">Leadership</p>
+          <h2 id="leadership-title" class="display mask"><span>Leadership &amp; Activities</span></h2>
         </div>
-        <div class="section-body">
-          <article class="card role-card reveal">
-            <p class="role-title">Member</p>
-            <h3>Rotaract Club of Delhi School of Economics</h3>
-          </article>
+        <article class="card role-card reveal">
+          <p class="role-title">Member</p>
+          <h3>Rotaract Club of Delhi School of Economics</h3>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         FAQ for recruiters. Each question opens and closes on click;
+         edit the answers here.
+         ===================================================================== -->
+    <section class="section section-tint" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="chip reveal">FAQ</p>
+            <h2 id="faq-title" class="display mask"><span>Questions Recruiters Ask</span></h2>
+          </div>
+          <p class="lead reveal">Quick answers on availability, location and fit.</p>
+        </div>
+
+        <div class="faq-grid">
+          <details class="faq-item reveal">
+            <summary><h3>What roles are you looking for?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
+            <div class="faq-answer">
+              <p>Entry-level roles in financial analysis, equity research, investment banking and
+                 corporate banking, including at global capability centres (GCCs).</p>
+            </div>
+          </details>
+          <details class="faq-item reveal">
+            <summary><h3>When can you start?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
+            <div class="faq-answer">
+              <p>Within one month of accepting an offer.</p>
+            </div>
+          </details>
+          <details class="faq-item reveal">
+            <summary><h3>Are you open to relocating?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
+            <div class="faq-answer">
+              <p>Yes. I'm open to roles in major cities across India, in the UAE and the wider
+                 Gulf region, and in Europe.</p>
+            </div>
+          </details>
+          <details class="faq-item reveal">
+            <summary><h3>Which tools do you work with?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
+            <div class="faq-answer">
+              <p>Microsoft Excel (advanced) and PowerPoint, Bloomberg and NSMART, plus basic
+                 Python and Node.js scripting for data work.</p>
+            </div>
+          </details>
+          <details class="faq-item reveal">
+            <summary><h3>Where are you with the CFA?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
+            <div class="faq-answer">
+              <p>I'm preparing for CFA Level 1.</p>
+            </div>
+          </details>
+          <details class="faq-item reveal">
+            <summary><h3>How can I get your resume?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
+            <div class="faq-answer">
+              <p>Get in touch through the contact section below and I'll send my latest resume.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -391,22 +573,35 @@
          7. CONTACT
          ===================================================================== -->
     <section class="section section-contact on-dark" id="contact" aria-labelledby="contact-title">
-      <div class="container section-grid">
-        <div class="section-heading">
-          <h2 id="contact-title">Contact</h2>
-        </div>
-        <div class="section-body reveal">
-          <p class="contact-intro">
+      <div class="container contact-grid">
+        <div class="contact-pitch">
+          <p class="chip chip-dark reveal">Contact</p>
+          <h2 id="contact-title" class="display mask"><span>Let&rsquo;s Talk</span></h2>
+
+          <!-- Decorative chat bubbles -->
+          <div class="chat reveal" aria-hidden="true">
+            <span class="chat-avatar">
+              <img src="assets/photos/roushan-avatar.jpg" alt="" width="192" height="192" loading="lazy" onerror="this.hidden = true">
+              <span class="chat-avatar-fallback">RM</span>
+            </span>
+            <div class="chat-bubbles">
+              <p class="chat-bubble">Hiring for a finance role?</p>
+              <p class="chat-bubble chat-typing"><span></span><span></span><span></span></p>
+            </div>
+          </div>
+
+          <p class="contact-intro reveal">
             Open to entry-level roles in financial analysis, equity research, and investment
-            and corporate banking, in India (including GCCs) and the UAE / Gulf region.
+            and corporate banking in India, the UAE / Gulf and Europe. Available to join within
+            one month.
           </p>
 
-          <div class="contact-methods">
+          <div class="contact-methods reveal">
             <!-- Email: the address is put together by script.js only when the button is
                  clicked, so spam bots reading the page cannot collect it. -->
-            <div class="contact-row" id="email-row">
+            <div class="contact-row">
               <span class="contact-label">Email</span>
-              <span class="contact-value" id="email-slot">
+              <span class="contact-value" id="email-slot" aria-live="polite">
                 <button type="button" class="link-button" id="show-email">Show email address</button>
                 <noscript>Please enable JavaScript to see the email address.</noscript>
               </span>
@@ -425,45 +620,48 @@
               <span class="contact-value">Download PDF</span>
             </a>
           </div>
-
-          <!-- Contact form (Formspree). Replace YOUR_FORM_ID with the form ID from
-               formspree.io. The form stays hidden while the placeholder is there. -->
-          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-needs-setup hidden>
-            <h3 class="form-title">Send a message</h3>
-            <div class="form-row">
-              <div class="field">
-                <label for="cf-name">Name</label>
-                <input id="cf-name" name="name" type="text" autocomplete="name" required>
-              </div>
-              <div class="field">
-                <label for="cf-email">Email</label>
-                <input id="cf-email" name="email" type="email" autocomplete="email" required>
-              </div>
-            </div>
-            <div class="field">
-              <label for="cf-org">Organisation <span class="optional">(optional)</span></label>
-              <input id="cf-org" name="organisation" type="text" autocomplete="organization">
-            </div>
-            <div class="field">
-              <label for="cf-message">Message</label>
-              <textarea id="cf-message" name="message" rows="5" required></textarea>
-            </div>
-            <!-- Spam trap: people never see or fill this field; bots do -->
-            <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <input type="hidden" name="_subject" value="New message from roushanmufti.in">
-            <button type="submit" class="btn btn-navy">Send message</button>
-            <p class="form-status" role="status" aria-live="polite"></p>
-          </form>
         </div>
+
+        <!-- Contact form (Formspree). Replace YOUR_FORM_ID with the form ID from
+             formspree.io. The form stays hidden while the placeholder is there. -->
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-needs-setup hidden>
+          <h3 class="form-title">Send a message</h3>
+          <div class="form-row">
+            <div class="field">
+              <label for="cf-name">Name</label>
+              <input id="cf-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="cf-org">Organisation <span class="optional">(optional)</span></label>
+            <input id="cf-org" name="organisation" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+          <!-- Spam trap: people never see or fill this field; bots do -->
+          <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="_subject" value="New message from roushanmufti.in">
+          <button type="submit" class="btn btn-navy">Send message</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
 
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; <span id="year">2026</span> Roushan Mufti Mohammad &middot; Delhi, India</p>
-      <p><a href="#top">Back to top</a></p>
+  <footer class="site-footer on-dark">
+    <div class="container">
+      <p class="footer-wordmark" aria-hidden="true">Roushan Mufti Mohammad</p>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> Roushan Mufti Mohammad &middot; Delhi, India</p>
+        <p><a href="#top">Back to top</a></p>
+      </div>
     </div>
   </footer>
 </body>

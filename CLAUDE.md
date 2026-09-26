@@ -4,7 +4,7 @@
 A personal portfolio website for Roushan, a finance postgraduate from the
 Delhi School of Economics, seeking entry-level roles in Finance, Investment
 Banking, Equity Research, Corporate Banking, and Financial Analysis in India
-(including GCCs), and open to opportunities in the UAE / Gulf region.
+(including GCCs), and open to opportunities in the UAE / Gulf region and Europe.
 
 Primary audience: recruiters and hiring managers at banks, investment firms,
 financial services companies, and GCCs. They will spend under 60 seconds on
@@ -16,6 +16,11 @@ within the first screen.
   matches all certificates; "Roushan" is fine in casual copy like the About text)
 - Location: Delhi, India
 - Headline: "Finance Postgraduate | Delhi School of Economics | Aspiring Financial Analyst"
+- Availability: can join within one month of accepting an offer
+- Open to working in: major cities in India, the UAE / Gulf region, and Europe
+- Photos (his own): /assets/photos/roushan.jpg (hero), roushan-campus.jpg
+  (About), roushan-avatar.jpg (contact chat bubble); also used in og-image.png.
+  Crops leave out bystanders; keep it that way.
 
 ### Education
 - **M.Com (Finance specialisation)** — Delhi School of Economics, University of Delhi (2024–2026)
@@ -84,13 +89,16 @@ entirely rather than showing placeholders.
 
 ## Site structure (single page with smooth-scroll navigation)
 1. **Hero** — name, headline, one-line value statement, two buttons:
-   "Download Resume" and "Contact Me"
+   "Download Resume" and "Contact Me"; photo with key-fact cards
+   (2 degrees, 6 certifications, "Preparing for CFA Level 1")
 2. **About** — 3–4 sentence professional summary (draft below)
-3. **Education** — timeline layout
+3. **Education** — timeline layout (shown as a year-by-year journey)
 4. **Skills & Certifications** — grouped cards
 5. **Projects** — cards (hidden until real projects are added)
 6. **Leadership** — Rotaract
-7. **Contact** — email, LinkedIn, simple contact form (use Formspree or similar)
+7. **FAQ for recruiters** — roles sought, start date, relocation, tools, CFA, resume
+8. **Contact** — email (with a copy button), LinkedIn, simple contact form
+   (use Formspree or similar)
 
 ### Draft About text
 "I'm a finance postgraduate from the Delhi School of Economics with a
@@ -102,13 +110,16 @@ looking for roles in financial analysis, investment research, and banking
 where I can contribute from day one and keep learning."
 
 ## Design requirements
-- Tone: professional, clean, confident — like a well-made banker's CV, not a
-  startup landing page
+- Tone: professional, clean, confident. Layout is inspired by heynesh.com
+  (large photo hero, key-fact cards, journey timeline, numbered cards, FAQ),
+  but kept in the navy/gold palette with a banker's-CV level of restraint
 - Colours: deep navy (#0B1F3A) primary, white background, one accent
   (muted gold #C9A227), grey for secondary text
 - Fonts: a clean serif for headings (e.g. Playfair Display or Libre
   Baskerville), a readable sans-serif for body (e.g. Inter)
-- Subtle animations only (fade-in on scroll); no heavy effects
+- Light animation only: fade/slide-in on scroll, count-up numbers, timeline
+  fill, a slow text marquee. No animation libraries (e.g. GSAP); always
+  respect "prefers-reduced-motion"
 - Fully responsive — must look excellent on mobile
 - Fast: plain HTML, CSS and minimal JavaScript; no heavy frameworks
 - Accessible: good contrast, alt text, semantic HTML
