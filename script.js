@@ -2,16 +2,17 @@
    Roushan Mufti Mohammad: portfolio scripts
 
    What this file does:
-     1. Shows "Download Resume" / "View" certificate links only once the file
-        has actually been uploaded, so visitors never hit a broken link
-     2. Shows the LinkedIn link and contact form once their placeholders
+     1. Shows "Download Resume" / certificate links only once the file has
+        actually been uploaded, so visitors never hit a broken link
+     2. Shows the LinkedIn links and contact form once their placeholders
         (YOUR_...) have been replaced in index.html
-     3. Reveals the email address only when "Show email address" is clicked,
-        with a "Copy" button next to it
+     3. Email: revealed only on click (contact section) or copied straight to
+        the clipboard (sidebar), so spam bots reading the page never see it
      4. Sends the contact form without leaving the page
-     5. Opens and closes the mobile menu
-     6. Light animation: cards fade in, numbers count up, the education
-        timeline fills in, and the menu highlights the section on screen
+     5. Opens and closes the phone/tablet menu
+     6. Sidebar: slides in after the top section and turns dark over navy sections
+     7. Light animation: fade-ins, count-up numbers, the curved journey line,
+        skill chips that light up their card, and the sideways credential cards
    ========================================================================== */
 
 (function () {
@@ -19,6 +20,7 @@
 
   // Visitors can ask their device for less motion; we respect that everywhere below
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasObserver = 'IntersectionObserver' in window;
 
 
   /* 1. Links to files that may not be uploaded yet
@@ -47,7 +49,7 @@
   });
 
 
-  /* 2. LinkedIn link and contact form
+  /* 2. LinkedIn links and contact form
      --------------------------------------------------------------------------
      Elements with data-needs-setup stay hidden while their web address still
      contains a placeholder starting with "YOUR_". Replace the placeholder in
@@ -62,8 +64,11 @@
 
   /* 3. Email address, assembled only on click (keeps it away from spam bots)
      -------------------------------------------------------------------------- */
-  var showEmailButton = document.getElementById('show-email');
-  var emailSlot = document.getElementById('email-slot');
+  function emailAddress() {
+    var user = 'roushan';
+    var domain = ['roushanmufti', 'in'].join('.');
+    return user + '@' + domain;
+  }
 
   // Copies text to the clipboard (with a fallback for older browsers)
   function copyText(text) {
@@ -93,11 +98,13 @@
     });
   }
 
+  // Contact section: "Show email address" turns into the address plus a Copy button
+  var showEmailButton = document.getElementById('show-email');
+  var emailSlot = document.getElementById('email-slot');
+
   if (showEmailButton && emailSlot) {
     showEmailButton.addEventListener('click', function () {
-      var user = 'roushan';
-      var domain = ['roushanmufti', 'in'].join('.');
-      var address = user + '@' + domain;
+      var address = emailAddress();
 
       var link = document.createElement('a');
       link.href = 'mailto:' + address;
@@ -122,6 +129,24 @@
       link.focus();
     });
   }
+
+  // Sidebar: one click shows the address and copies it
+  document.querySelectorAll('[data-copy-email]').forEach(function (button) {
+    var label = button.querySelector('.copy-email-text');
+    button.addEventListener('click', function () {
+      var address = emailAddress();
+      label.textContent = address;
+      button.setAttribute('title', address);
+      copyText(address).then(function () {
+        label.textContent = 'Copied: ' + address;
+      }, function () {
+        label.textContent = address;
+      });
+      window.setTimeout(function () {
+        label.textContent = address;
+      }, 2500);
+    });
+  });
 
 
   /* 4. Contact form (Formspree), sent in the background with a status message
@@ -163,23 +188,23 @@
   }
 
 
-  /* 5. Mobile menu
+  /* 5. Phone/tablet menu
      -------------------------------------------------------------------------- */
   var navToggle = document.querySelector('.nav-toggle');
-  var nav = document.getElementById('site-nav');
+  var mobileNav = document.getElementById('mobile-nav');
 
   function setMenu(open) {
     navToggle.setAttribute('aria-expanded', String(open));
-    nav.classList.toggle('is-open', open);
+    mobileNav.classList.toggle('is-open', open);
   }
 
-  if (navToggle && nav) {
+  if (navToggle && mobileNav) {
     navToggle.addEventListener('click', function () {
       setMenu(navToggle.getAttribute('aria-expanded') !== 'true');
     });
 
     // Close the menu after choosing a section
-    nav.addEventListener('click', function (event) {
+    mobileNav.addEventListener('click', function (event) {
       if (event.target.closest('a')) {
         setMenu(false);
       }
@@ -187,7 +212,7 @@
 
     // Close the menu with the Escape key
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+      if (event.key === 'Escape' && mobileNav.classList.contains('is-open')) {
         setMenu(false);
         navToggle.focus();
       }
@@ -195,10 +220,48 @@
   }
 
 
-  /* 6a. Fade-in on scroll
+  /* 6. Sidebar (large screens)
+     -------------------------------------------------------------------------- */
+  var sidebar = document.getElementById('sidebar');
+  var hero = document.querySelector('.hero');
+
+  if (sidebar && hero && hasObserver) {
+    // Hidden (and skipped by the Tab key) while the top section fills the screen
+    var setSidebar = function (show) {
+      sidebar.classList.toggle('is-shown', show);
+      sidebar.inert = !show;
+    };
+    setSidebar(false);
+
+    new IntersectionObserver(function (entries) {
+      setSidebar(!entries[0].isIntersecting);
+    }, { rootMargin: '-35% 0px 0px 0px' }).observe(hero);
+
+    // Dark colours while a navy section passes behind the middle of the sidebar
+    var darkOnScreen = new Set();
+    var themeObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          darkOnScreen.add(entry.target);
+        } else {
+          darkOnScreen.delete(entry.target);
+        }
+      });
+      sidebar.dataset.theme = darkOnScreen.size ? 'dark' : 'light';
+    }, { rootMargin: '-50% 0px -50% 0px' });
+
+    document.querySelectorAll('[data-theme="dark"]').forEach(function (section) {
+      if (section !== sidebar) {
+        themeObserver.observe(section);
+      }
+    });
+  }
+
+
+  /* 7a. Fade-in on scroll
      --------------------------------------------------------------------------
      Elements with class "reveal" fade up; headings with class "mask" slide up.
-     Cards in the same row appear one after another. */
+     Cards that sit side by side appear one after another. */
   var animated = document.querySelectorAll('.reveal, .mask');
 
   function showElement(element) {
@@ -212,8 +275,7 @@
     }
   }
 
-  if (!reduceMotion && 'IntersectionObserver' in window) {
-    // Stagger cards that sit side by side
+  if (!reduceMotion && hasObserver) {
     animated.forEach(function (element) {
       if (!element.classList.contains('reveal') || !element.parentElement) {
         return;
@@ -242,10 +304,8 @@
   }
 
 
-  /* 6b. Key-fact numbers count up from zero when they come into view
+  /* 7b. Key-fact numbers count up from zero when they come into view
      -------------------------------------------------------------------------- */
-  var counters = document.querySelectorAll('[data-count]');
-
   function countUp(element) {
     var target = parseInt(element.getAttribute('data-count'), 10);
     var duration = 1100;
@@ -265,48 +325,115 @@
     window.requestAnimationFrame(step);
   }
 
-  if (!reduceMotion && 'IntersectionObserver' in window) {
+  if (!reduceMotion && hasObserver) {
     var counterObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          // Short pause so the count starts once the card has faded in
-          window.setTimeout(function () { countUp(entry.target); }, 250);
+          window.setTimeout(function () { countUp(entry.target); }, 350);
           counterObserver.unobserve(entry.target);
         }
       });
     });
 
-    counters.forEach(function (counter) {
+    document.querySelectorAll('[data-count]').forEach(function (counter) {
       counter.textContent = '0';
       counterObserver.observe(counter);
     });
   }
 
 
-  /* 6c. Education timeline: the gold line fills in as the visitor scrolls
-     -------------------------------------------------------------------------- */
-  var journey = document.querySelector('.journey');
+  /* 7c. Journey: a curved line joins the cards and fills in as you scroll
+     --------------------------------------------------------------------------
+     On wider screens the line is drawn in an SVG, curving from card to card.
+     On phones a straight line is drawn by styles.css instead. */
+  var journey = document.getElementById('journey');
 
   if (journey) {
-    var journeyItems = journey.querySelectorAll('.journey-item');
+    var svg = journey.querySelector('.journey-path');
+    var trackPath = journey.querySelector('.journey-track');
+    var fillPath = journey.querySelector('.journey-fill');
+    var dotGroup = journey.querySelector('.journey-dots');
+    var items = Array.prototype.slice.call(journey.querySelectorAll('.journey-item'));
+    var wideScreen = window.matchMedia('(min-width: 760px)');
+    var pathLength = 0;
+    var dotLengths = [];
     var journeyQueued = false;
 
+    // Works out where each card's dot goes and draws the curve through them
+    var drawPath = function () {
+      dotGroup.replaceChildren();
+      dotLengths = [];
+      if (!wideScreen.matches) {
+        return;
+      }
+      var box = journey.getBoundingClientRect();
+      svg.setAttribute('viewBox', '0 0 ' + box.width + ' ' + box.height);
+
+      var points = items.map(function (item, index) {
+        var card = item.querySelector('.journey-card').getBoundingClientRect();
+        var onLeft = index % 2 === 0;
+        return {
+          x: (onLeft ? card.right : card.left) - box.left,
+          y: card.top - box.top + 64
+        };
+      });
+
+      // Smooth S-shaped curves between neighbouring dots
+      var d = 'M ' + points[0].x + ' ' + (points[0].y - 70) + ' L ' + points[0].x + ' ' + points[0].y;
+      var measure = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      svg.appendChild(measure);
+      measure.setAttribute('d', d);
+      dotLengths.push(measure.getTotalLength());
+
+      for (var i = 1; i < points.length; i++) {
+        var from = points[i - 1];
+        var to = points[i];
+        var midX = (from.x + to.x) / 2;
+        d += ' C ' + midX + ' ' + from.y + ' ' + midX + ' ' + to.y + ' ' + to.x + ' ' + to.y;
+        measure.setAttribute('d', d);
+        dotLengths.push(measure.getTotalLength());
+      }
+      var last = points[points.length - 1];
+      d += ' L ' + last.x + ' ' + (last.y + 90);
+      svg.removeChild(measure);
+
+      trackPath.setAttribute('d', d);
+      fillPath.setAttribute('d', d);
+      pathLength = fillPath.getTotalLength();
+      fillPath.style.strokeDasharray = pathLength;
+
+      points.forEach(function (point) {
+        var dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', point.x);
+        dot.setAttribute('cy', point.y);
+        dot.setAttribute('r', 7);
+        dotGroup.appendChild(dot);
+      });
+    };
+
+    // Moves the gold/navy fill to match how far the visitor has scrolled
     var updateJourney = function () {
       journeyQueued = false;
       var box = journey.getBoundingClientRect();
       var progress = 1;
       if (!reduceMotion) {
-        progress = (window.innerHeight * 0.6 - box.top) / box.height;
+        progress = (window.innerHeight * 0.65 - box.top) / box.height;
         progress = Math.min(Math.max(progress, 0), 1);
       }
-      journey.style.setProperty('--progress', progress.toFixed(3));
 
-      // Light up each marker once the line has reached it
-      var lineEnd = box.top + progress * box.height;
-      journeyItems.forEach(function (item) {
-        var marker = item.getBoundingClientRect().top + 30;
-        item.classList.toggle('is-passed', marker <= lineEnd + 1);
-      });
+      if (wideScreen.matches && pathLength) {
+        var filled = pathLength * progress;
+        fillPath.style.strokeDashoffset = pathLength - filled;
+        Array.prototype.forEach.call(dotGroup.children, function (dot, index) {
+          dot.classList.toggle('is-passed', dotLengths[index] <= filled + 1);
+        });
+      } else {
+        journey.style.setProperty('--progress', progress.toFixed(3));
+        var lineEnd = box.top + progress * box.height;
+        items.forEach(function (item) {
+          item.classList.toggle('is-passed', item.getBoundingClientRect().top + 40 <= lineEnd);
+        });
+      }
     };
 
     var queueJourneyUpdate = function () {
@@ -316,34 +443,81 @@
       }
     };
 
+    var redraw = function () {
+      drawPath();
+      updateJourney();
+    };
+
     window.addEventListener('scroll', queueJourneyUpdate, { passive: true });
-    window.addEventListener('resize', queueJourneyUpdate);
-    updateJourney();
+    window.addEventListener('resize', function () { window.requestAnimationFrame(redraw); });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(redraw); // card sizes change once the fonts load
+    }
+    window.addEventListener('load', redraw);
+    redraw();
   }
 
 
-  /* 6d. Highlight the menu link for the section on screen
+  /* 7d. Skill chips light up the card they point to
      -------------------------------------------------------------------------- */
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.site-nav a[href^="#"]'));
+  document.querySelectorAll('[data-lights]').forEach(function (chip) {
+    var card = document.getElementById(chip.getAttribute('data-lights'));
+    if (!card) {
+      return;
+    }
+    var on = function () { card.classList.add('is-lit'); };
+    var off = function () { card.classList.remove('is-lit'); };
+    chip.addEventListener('mouseenter', on);
+    chip.addEventListener('mouseleave', off);
+    chip.addEventListener('focus', on);
+    chip.addEventListener('blur', off);
+  });
+
+
+  /* 7e. Credential cards: previous / next buttons scroll the row sideways
+     -------------------------------------------------------------------------- */
+  var credTrack = document.querySelector('#certifications .cred-track');
+
+  document.querySelectorAll('[data-cred-scroll]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      if (!credTrack) {
+        return;
+      }
+      var card = credTrack.querySelector('.cred-card');
+      var step = card ? card.getBoundingClientRect().width + 20 : 320;
+      credTrack.scrollBy({ left: step * parseInt(button.getAttribute('data-cred-scroll'), 10), behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  });
+
+
+  /* 7f. Highlight the menu links for the section on screen
+     -------------------------------------------------------------------------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.side-nav a, .mobile-nav a, .hero-nav a'));
+  var sectionIds = [];
+  navLinks.forEach(function (link) {
+    var id = link.getAttribute('href').slice(1);
+    if (sectionIds.indexOf(id) === -1) {
+      sectionIds.push(id);
+    }
+  });
   var onScreen = {};
 
-  if (navLinks.length && 'IntersectionObserver' in window) {
+  if (navLinks.length && hasObserver) {
     var sectionObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         onScreen[entry.target.id] = entry.isIntersecting;
       });
 
-      // If two sections qualify (e.g. About and the Education list inside it),
-      // the later one in the menu wins
+      // If two qualify (e.g. About and the journey inside it), the later one wins
       var current = null;
-      navLinks.forEach(function (link) {
-        if (onScreen[link.getAttribute('href').slice(1)]) {
-          current = link;
+      sectionIds.forEach(function (id) {
+        if (onScreen[id]) {
+          current = id;
         }
       });
 
       navLinks.forEach(function (link) {
-        if (link === current) {
+        if (current && link.getAttribute('href') === '#' + current) {
           link.setAttribute('aria-current', 'true');
         } else {
           link.removeAttribute('aria-current');
@@ -351,8 +525,8 @@
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
 
-    navLinks.forEach(function (link) {
-      var target = document.getElementById(link.getAttribute('href').slice(1));
+    sectionIds.forEach(function (id) {
+      var target = document.getElementById(id);
       if (target) {
         sectionObserver.observe(target);
       }

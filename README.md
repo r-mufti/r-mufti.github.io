@@ -21,13 +21,14 @@ The photos live in `assets/photos/`:
 
 | File | Where it appears |
 | --- | --- |
-| `roushan.jpg` | Arch-shaped frame at the top of the page (upright, 4:5) |
+| `roushan-cutout.webp` | Top of the page, in front of the giant "ROUSHAN" (background removed) |
 | `roushan-campus.jpg` | Next to the About text (upright, 4:5) |
 | `roushan-avatar.jpg` | Small round picture by the chat bubble in Contact (square) |
+| `roushan.jpg` | Not shown on the page; used for search results (structured data) |
 
-To change a photo, upload a new one with the same file name. If the top
-photo is ever missing, a gold "RM" monogram is shown instead. The picture
-used for link previews is `assets/og-image.png`.
+To change a photo, upload a new one with the same file name. The top photo
+needs a transparent background (a cut-out) to sit in front of the giant name.
+The picture used for link previews is `assets/og-image.png`.
 
 ## Adding the resume and certificates
 

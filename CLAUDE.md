@@ -18,8 +18,9 @@ within the first screen.
 - Headline: "Finance Postgraduate | Delhi School of Economics | Aspiring Financial Analyst"
 - Availability: can join within one month of accepting an offer
 - Open to working in: major cities in India, the UAE / Gulf region, and Europe
-- Photos (his own): /assets/photos/roushan.jpg (hero), roushan-campus.jpg
-  (About), roushan-avatar.jpg (contact chat bubble); also used in og-image.png.
+- Photos (his own): /assets/photos/roushan-cutout.webp (hero cut-out, background
+  removed locally), roushan-campus.jpg (About), roushan-avatar.jpg (contact chat
+  bubble), roushan.jpg (structured data); the cut-out is also in og-image.png.
   Crops leave out bystanders; keep it that way.
 
 ### Education
@@ -88,9 +89,12 @@ entirely rather than showing placeholders.
 - Resume: /assets/Roushan_Resume.pdf (downloadable)
 
 ## Site structure (single page with smooth-scroll navigation)
-1. **Hero** — name, headline, one-line value statement, two buttons:
-   "Download Resume" and "Contact Me"; photo with key-fact cards
-   (2 degrees, 6 certifications, "Preparing for CFA Level 1")
+1. **Hero** — giant gold "ROUSHAN" behind his cut-out photo; name (h1),
+   headline, one-line value statement, "Download Resume" and "Contact Me"
+   buttons; key-fact cards (2 degrees, 6 certifications) and a strengths card
+   ending with "Preparing for CFA Level 1"
+   - On large screens a sidebar (stats, section links, copy-email button,
+     "Contact Me") slides in after the hero, heynesh-style
 2. **About** — 3–4 sentence professional summary (draft below)
 3. **Education** — timeline layout (shown as a year-by-year journey)
 4. **Skills & Certifications** — grouped cards
@@ -110,16 +114,19 @@ looking for roles in financial analysis, investment research, and banking
 where I can contribute from day one and keep learning."
 
 ## Design requirements
-- Tone: professional, clean, confident. Layout is inspired by heynesh.com
-  (large photo hero, key-fact cards, journey timeline, numbered cards, FAQ),
-  but kept in the navy/gold palette with a banker's-CV level of restraint
-- Colours: deep navy (#0B1F3A) primary, white background, one accent
-  (muted gold #C9A227), grey for secondary text
+- Tone: professional, clean, confident. The layout closely follows heynesh.com
+  (giant name behind a cut-out photo, glass cards, sticky sidebar, curved
+  journey timeline, "What You Get" sentence with icon chips, dark row of
+  numbered cards, two-column FAQ), with his black/yellow swapped for navy/gold
+- Colours: deep navy (#0B1F3A) primary, warm stone background (#E9E4DA),
+  one accent (muted gold #C9A227; darker #9A7614 / #7A5C0C for gold text on
+  light backgrounds so it stays readable), grey for secondary text
 - Fonts: a clean serif for headings (e.g. Playfair Display or Libre
   Baskerville), a readable sans-serif for body (e.g. Inter)
-- Light animation only: fade/slide-in on scroll, count-up numbers, timeline
-  fill, a slow text marquee. No animation libraries (e.g. GSAP); always
-  respect "prefers-reduced-motion"
+- Light animation only: fade/slide-in on scroll, letter-by-letter giant name,
+  count-up numbers, curved timeline fill, sidebar slide-in, a slow text
+  marquee. No animation libraries (e.g. GSAP); always respect
+  "prefers-reduced-motion"
 - Fully responsive — must look excellent on mobile
 - Fast: plain HTML, CSS and minimal JavaScript; no heavy frameworks
 - Accessible: good contrast, alt text, semantic HTML
