@@ -18,8 +18,9 @@ within the first screen.
 - Headline: "Finance Postgraduate | Delhi School of Economics | Aspiring Financial Analyst"
 - Availability: can join within one month of accepting an offer
 - Open to working in: major cities in India, the UAE / Gulf region, and Europe
-- Photo: his own portrait at /assets/photos/roushan.jpg (shown in the hero and
-  the contact section; an "RM" monogram is shown until it is uploaded)
+- Photos (his own): /assets/photos/roushan.jpg (hero), roushan-campus.jpg
+  (About), roushan-avatar.jpg (contact chat bubble); also used in og-image.png.
+  Crops leave out bystanders; keep it that way.
 
 ### Education
 - **M.Com (Finance specialisation)** — Delhi School of Economics, University of Delhi (2024–2026)

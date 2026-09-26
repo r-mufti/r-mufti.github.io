@@ -15,12 +15,19 @@ Live at: https://roushanmufti.in
 | `CNAME` | Tells GitHub Pages to use the domain `roushanmufti.in` |
 | `_config.yml` | Keeps `README.md` and `CLAUDE.md` off the live site |
 
-## Adding your photo
+## Photos
 
-Upload a portrait photo as `assets/photos/roushan.jpg` (upright, roughly
-900 × 1125 pixels, under about 300 KB). It appears in the arch-shaped frame
-at the top of the page and next to the chat bubble in the contact section.
-Until it is uploaded, a gold "RM" monogram is shown instead.
+The photos live in `assets/photos/`:
+
+| File | Where it appears |
+| --- | --- |
+| `roushan.jpg` | Arch-shaped frame at the top of the page (upright, 4:5) |
+| `roushan-campus.jpg` | Next to the About text (upright, 4:5) |
+| `roushan-avatar.jpg` | Small round picture by the chat bubble in Contact (square) |
+
+To change a photo, upload a new one with the same file name. If the top
+photo is ever missing, a gold "RM" monogram is shown instead. The picture
+used for link previews is `assets/og-image.png`.
 
 ## Adding the resume and certificates
 

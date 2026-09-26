@@ -46,6 +46,7 @@
     "@type": "Person",
     "name": "Roushan Mufti Mohammad",
     "url": "https://roushanmufti.in/",
+    "image": "https://roushanmufti.in/assets/photos/roushan.jpg",
     "description": "Finance Postgraduate | Delhi School of Economics | Aspiring Financial Analyst",
     "address": { "@type": "PostalAddress", "addressLocality": "Delhi", "addressCountry": "IN" },
     "alumniOf": [
@@ -134,10 +135,10 @@
         </div>
 
         <div class="hero-visual hero-in" style="--i: 2">
-          <!-- Photo: upload it as assets/photos/roushan.jpg (portrait, about 900 x 1125 px).
-               Until then, the gold "RM" monogram is shown instead. -->
+          <!-- Photo: assets/photos/roushan.jpg (upright, 4:5). If the file is ever
+               missing, the gold "RM" monogram is shown instead. -->
           <figure class="portrait">
-            <img src="assets/photos/roushan.jpg" alt="Roushan Mufti Mohammad" width="900" height="1125" fetchpriority="high" onerror="this.hidden = true">
+            <img src="assets/photos/roushan.jpg" alt="Portrait of Roushan Mufti Mohammad in a navy blazer" width="680" height="850" fetchpriority="high" onerror="this.hidden = true">
             <span class="portrait-fallback" aria-hidden="true">RM</span>
           </figure>
 
@@ -194,12 +195,11 @@
          ===================================================================== -->
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="container">
-        <div class="section-head section-head-stack">
-          <div>
+        <div class="about-intro">
+          <div class="about-text">
             <p class="chip reveal">About me</p>
             <h2 id="about-title" class="display mask"><span>About Me &amp; My Journey</span></h2>
-          </div>
-          <p class="lead reveal">
+            <p class="lead reveal">
             I'm a finance postgraduate from the Delhi School of Economics with a
             specialisation in Finance and a strong interest in markets, macroeconomics,
             and how capital moves across borders. My coursework in international
@@ -207,7 +207,11 @@
             approach to financial problems. I'm currently preparing for CFA Level 1 and
             looking for roles in financial analysis, investment research, and banking
             where I can contribute from day one and keep learning.
-          </p>
+            </p>
+          </div>
+          <figure class="about-photo reveal">
+            <img src="assets/photos/roushan-campus.jpg" alt="Roushan Mufti Mohammad in a navy suit outside the Sir Shanker Lal Concert Hall" width="660" height="825" loading="lazy">
+          </figure>
         </div>
 
         <!-- Education timeline. The gold line fills in as the visitor scrolls. -->
@@ -577,7 +581,7 @@
           <!-- Decorative chat bubbles -->
           <div class="chat reveal" aria-hidden="true">
             <span class="chat-avatar">
-              <img src="assets/photos/roushan.jpg" alt="" width="96" height="96" loading="lazy" onerror="this.hidden = true">
+              <img src="assets/photos/roushan-avatar.jpg" alt="" width="192" height="192" loading="lazy" onerror="this.hidden = true">
               <span class="chat-avatar-fallback">RM</span>
             </span>
             <div class="chat-bubbles">
