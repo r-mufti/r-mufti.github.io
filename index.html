@@ -36,8 +36,21 @@
   <link rel="preload" as="image" href="assets/photos/roushan-cutout.webp" type="image/webp">
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Marks the page as "JavaScript available" so animations only apply when they can run -->
-  <script>document.documentElement.classList.add('js');</script>
+  <!-- Marks the page as "JavaScript available" so animations only apply when they can run.
+       It also gets the opening animation ready (skipped for visitors who prefer less motion,
+       or who arrive through a link to a section such as roushanmufti.in/#contact). -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash) {
+        root.classList.add('intro-pending');
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        // Safety net: never leave the top section hidden
+        setTimeout(function () { root.classList.remove('intro-pending'); }, 4000);
+      }
+    })();
+  </script>
   <script src="script.js" defer></script>
 
   <!-- Structured data: helps Google show the right name and details in search results -->
@@ -127,8 +140,8 @@
     </div>
 
     <div class="side-box side-stats">
-      <p><span class="side-num" data-count="6">6</span> Certifications</p>
-      <p><span class="side-num" data-count="2">2</span> DU degrees</p>
+      <p data-stat="certs"><span class="side-num" data-count="6">6</span> Certifications</p>
+      <p data-stat="degrees"><span class="side-num" data-count="2">2</span> DU degrees</p>
     </div>
 
     <nav class="side-box side-nav" aria-label="Sections">
@@ -165,10 +178,13 @@
     <!-- =====================================================================
          1. HERO
          ===================================================================== -->
+    <!-- On large screens this section stays pinned while you scroll, and its pieces
+         fly into the sidebar (see "Landing animation" in script.js) -->
     <section class="hero" id="top" aria-labelledby="hero-name">
+     <div class="hero-stage">
 
       <!-- Giant name behind the photo (decorative; the real name is the heading below) -->
-      <p class="masthead" aria-hidden="true"><span style="--i:0">R</span><span style="--i:1">o</span><span style="--i:2">u</span><span style="--i:3">s</span><span style="--i:4">h</span><span style="--i:5">a</span><span style="--i:6">n</span></p>
+      <p class="masthead" aria-hidden="true"><span>R</span><span>o</span><span>u</span><span>s</span><span>h</span><span>a</span><span>n</span></p>
 
       <!-- Cut-out photo: assets/photos/roushan-cutout.webp -->
       <figure class="hero-photo">
@@ -192,28 +208,28 @@
 
         <!-- Key facts -->
         <ul class="hero-stats">
-          <li class="glass stat-tile hero-in" style="--i: 4">
+          <li class="glass stat-tile" data-stat="degrees">
             <span class="stat-num" data-count="2">2</span>
             <span class="stat-label">Degrees, University <br>of Delhi</span>
           </li>
-          <li class="glass stat-tile stat-tile-tall hero-in" style="--i: 5">
+          <li class="glass stat-tile stat-tile-tall" data-stat="certs">
             <span class="stat-num stat-num-big" data-count="6">6</span>
             <span class="stat-label">Professional <br>certifications</span>
           </li>
         </ul>
 
         <div class="hero-center">
-          <p class="hero-heading hero-in" style="--i: 3">Finance, <br>Analysed <br>Closely.</p>
-          <div class="hero-actions hero-in" style="--i: 6">
+          <p class="hero-heading">Finance, <br>Analysed <br>Closely.</p>
+          <div class="hero-actions">
             <!-- Hidden until assets/Roushan_Resume.pdf is uploaded; script.js shows it automatically -->
             <a class="btn btn-gold" href="assets/Roushan_Resume.pdf" download="Roushan_Mufti_Mohammad_Resume.pdf" data-requires-file hidden>Download Resume</a>
-            <a class="btn btn-gold" href="#contact">Contact Me</a>
+            <a class="btn btn-gold" href="#contact" data-fly-cta>Contact Me</a>
             <!-- Shown only while the resume button is hidden -->
             <a class="btn btn-gold btn-about" href="#about">About Me</a>
           </div>
         </div>
 
-        <ul class="glass trait-card hero-in" style="--i: 5" aria-label="Strengths">
+        <ul class="glass trait-card" aria-label="Strengths">
           <li><svg aria-hidden="true"><use href="#i-chart"/></svg>Financial analysis</li>
           <li><svg aria-hidden="true"><use href="#i-shield"/></svg>Investment risk</li>
           <li><svg aria-hidden="true"><use href="#i-globe"/></svg>International finance</li>
@@ -221,19 +237,20 @@
           <li><svg aria-hidden="true"><use href="#i-book"/></svg>Preparing for CFA Level 1</li>
         </ul>
 
-        <div class="hero-intro hero-in" style="--i: 7">
+        <div class="hero-intro">
           <p class="status-chip"><span class="status-dot" aria-hidden="true"></span>Available to join within one month</p>
           <h1 id="hero-name">Roushan Mufti Mohammad</h1>
           <!-- Each phrase stays on one line; the gold "|" separators are added by styles.css -->
           <p class="hero-headline"><span class="headline-items"><span>Finance Postgraduate</span> <span>Delhi School of Economics</span> <span>Aspiring Financial Analyst</span></span></p>
         </div>
 
-        <p class="hero-value hero-in" style="--i: 8">
+        <p class="hero-value">
           Analytical and detail-oriented, with a grounding in international finance and investment
           risk. Seeking entry-level roles in financial analysis, equity research, and investment and
           corporate banking.
         </p>
       </div>
+     </div>
     </section>
 
     <!-- =====================================================================

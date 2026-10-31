@@ -10,7 +10,7 @@ Live at: https://roushanmufti.in
 | --- | --- |
 | `index.html` | All the page content (text, sections, links) |
 | `styles.css` | Colours, fonts and layout. Colours are at the top of the file |
-| `script.js` | Small helpers: hidden-until-uploaded buttons, email and copy buttons, contact form, mobile menu, light animation |
+| `script.js` | Small helpers: hidden-until-uploaded buttons, email and copy buttons, contact form, mobile menu, and the animations (opening animation and the scroll effect that moves the top section into the sidebar, in section 6b) |
 | `assets/` | Photo, resume, certificates, icons and the link-preview image |
 | `CNAME` | Tells GitHub Pages to use the domain `roushanmufti.in` |
 | `_config.yml` | Keeps `README.md` and `CLAUDE.md` off the live site |

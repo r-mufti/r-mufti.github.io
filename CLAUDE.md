@@ -94,7 +94,7 @@ entirely rather than showing placeholders.
    buttons; key-fact cards (2 degrees, 6 certifications) and a strengths card
    ending with "Preparing for CFA Level 1"
    - On large screens a sidebar (stats, section links, copy-email button,
-     "Contact Me") slides in after the hero, heynesh-style
+     "Contact Me") is built from the hero pieces as you scroll, heynesh-style
 2. **About** — 3–4 sentence professional summary (draft below)
 3. **Education** — timeline layout (shown as a year-by-year journey)
 4. **Skills & Certifications** — grouped cards
@@ -123,10 +123,16 @@ where I can contribute from day one and keep learning."
   light backgrounds so it stays readable), grey for secondary text
 - Fonts: a clean serif for headings (e.g. Playfair Display or Libre
   Baskerville), a readable sans-serif for body (e.g. Inter)
-- Light animation only: fade/slide-in on scroll, letter-by-letter giant name,
-  count-up numbers, curved timeline fill, sidebar slide-in, a slow text
-  marquee. No animation libraries (e.g. GSAP); always respect
-  "prefers-reduced-motion"
+- Landing animation, heynesh-style: on load the giant name rises letter by
+  letter in the centre, then settles while the photo un-blurs and the
+  headline, nav, cards and buttons build in (~3 s; any scroll, key or tap
+  skips it). On large screens the hero then pins while scrolling: the photo
+  blurs and the name, nav links, key-fact cards and "Contact Me" fly into the
+  sidebar, which builds piece by piece
+- Otherwise light animation: fade/slide-in on scroll, count-up numbers,
+  curved timeline fill, a slow text marquee. No animation libraries (e.g.
+  GSAP), only plain JavaScript; always respect "prefers-reduced-motion"
+  (no opening animation or scroll morph, everything shown at once)
 - Fully responsive — must look excellent on mobile
 - Fast: plain HTML, CSS and minimal JavaScript; no heavy frameworks
 - Accessible: good contrast, alt text, semantic HTML
