@@ -10,7 +10,11 @@
         the clipboard (sidebar), so spam bots reading the page never see it
      4. Sends the contact form without leaving the page
      5. Opens and closes the phone/tablet menu
-     6. Sidebar: slides in after the top section and turns dark over navy sections
+     6. Sidebar: turns dark over navy sections (and slides in after the top
+        section when the landing animation is not running)
+     6b. Landing animation, in the style of heynesh.com: the giant name builds
+        up, the top section assembles, and on large screens its pieces fly
+        into the sidebar as the visitor scrolls
      7. Light animation: fade-ins, count-up numbers, the curved journey line,
         skill chips that light up their card, and the sideways credential cards
    ========================================================================== */
@@ -224,17 +228,23 @@
      -------------------------------------------------------------------------- */
   var sidebar = document.getElementById('sidebar');
   var hero = document.querySelector('.hero');
+  var morph = { active: false };   // the scroll animation of section 6b, when it runs
+  var heroGone = false;            // has the visitor scrolled past the top section?
+
+  // Hidden (and skipped by the Tab key) while the top section fills the screen
+  function setSidebar(show) {
+    sidebar.classList.toggle('is-shown', show);
+    sidebar.inert = !show;
+  }
 
   if (sidebar && hero && hasObserver) {
-    // Hidden (and skipped by the Tab key) while the top section fills the screen
-    var setSidebar = function (show) {
-      sidebar.classList.toggle('is-shown', show);
-      sidebar.inert = !show;
-    };
     setSidebar(false);
 
     new IntersectionObserver(function (entries) {
-      setSidebar(!entries[0].isIntersecting);
+      heroGone = !entries[0].isIntersecting;
+      if (!morph.active) {
+        setSidebar(heroGone);
+      }
     }, { rootMargin: '-35% 0px 0px 0px' }).observe(hero);
 
     // Dark colours while a navy section passes behind the middle of the sidebar
@@ -255,6 +265,440 @@
         themeObserver.observe(section);
       }
     });
+  }
+
+
+  /* 6b. Landing animation (in the style of heynesh.com)
+     --------------------------------------------------------------------------
+     a) Opening: the giant name builds letter by letter in the middle of the
+        screen, then settles at the top while the photo comes into focus and
+        the menu, headline, cards and buttons follow. Any scroll, click, tap
+        or key press skips straight to the end.
+     b) Large screens: while the visitor scrolls, the top section stays pinned,
+        the photo blurs, and the giant name, menu links, key facts and the
+        "Contact Me" button fly into the sidebar, which is built piece by piece.
+     Both are skipped for visitors who prefer less motion. The timings below are
+     fractions of the pinned scroll (0 = top of the page, 1 = morph finished). */
+  var root = document.documentElement;
+  var stage = hero ? hero.querySelector('.hero-stage') : null;
+  var introEndsAt = 0;   // when the opening animation finishes (used by the count-up numbers)
+
+  function clamp01(value) {
+    return Math.min(Math.max(value, 0), 1);
+  }
+
+  // How far one step has progressed, from 0 to 1, between two points of the scroll
+  function part(p, from, to) {
+    return clamp01((p - from) / (to - from));
+  }
+
+  function easeInOut(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  // The box around an element's own text (ignores icons and padding)
+  function textRect(element) {
+    var node = Array.prototype.find.call(element.childNodes, function (child) {
+      return child.nodeType === 3 && child.textContent.trim();
+    });
+    if (!node) {
+      return element.getBoundingClientRect();
+    }
+    var range = document.createRange();
+    range.selectNodeContents(node);
+    return range.getBoundingClientRect();
+  }
+
+  // Splits the headline into lines and letters for the opening animation.
+  // Screen readers still get the plain sentence.
+  function splitHeading(heading) {
+    var lines = [[]];
+    heading.childNodes.forEach(function (node) {
+      if (node.nodeName === 'BR') {
+        lines.push([]);
+      } else {
+        lines[lines.length - 1].push(node.textContent);
+      }
+    });
+    var label = document.createElement('span');
+    label.className = 'visually-hidden';
+    label.textContent = heading.textContent.replace(/\s+/g, ' ').trim();
+    var visual = document.createElement('span');
+    visual.setAttribute('aria-hidden', 'true');
+    var letters = [];
+    lines.forEach(function (pieces) {
+      var text = pieces.join('').replace(/\s+/g, ' ').trim();
+      if (!text) {
+        return;
+      }
+      var line = document.createElement('span');
+      line.className = 'hero-line';
+      Array.prototype.forEach.call(text, function (character) {
+        var letter = document.createElement('span');
+        letter.className = 'hero-char';
+        letter.textContent = character;
+        line.appendChild(letter);
+        letters.push(letter);
+      });
+      visual.appendChild(line);
+    });
+    heading.replaceChildren(label, visual);
+    return letters;
+  }
+
+  /* a) Opening animation */
+  function playIntro() {
+    var animations = [];
+    var expo = 'cubic-bezier(0.19, 1, 0.22, 1)';
+    var inOut = 'cubic-bezier(0.76, 0, 0.24, 1)';
+    var bigScreen = window.matchMedia('(min-width: 1200px)').matches;
+
+    // Each piece starts hidden ("backwards") and the animation removes itself when done
+    function run(element, keyframes, options) {
+      if (!element || !element.animate) {
+        return;
+      }
+      var settings = { duration: 900, delay: 0, easing: expo, fill: 'backwards' };
+      Object.keys(options || {}).forEach(function (key) {
+        settings[key] = options[key];
+      });
+      animations.push(element.animate(keyframes, settings));
+    }
+
+    var rise = [{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'none' }];
+    window.scrollTo(0, 0);
+
+    // 1. The giant name gathers, small, in the middle of the screen...
+    var name = stage.querySelector('.masthead');
+    var box = name.getBoundingClientRect();
+    var shiftY = window.innerHeight / 2 - (box.top + box.height / 2);
+    var held = 'translateY(' + shiftY.toFixed(1) + 'px) scale(' + (bigScreen ? 0.42 : 0.72) + ')';
+    run(name, [
+      { transform: held, transformOrigin: '50% 50%', offset: 0 },
+      { transform: held, transformOrigin: '50% 50%', offset: 0.5, easing: inOut },
+      { transform: 'none', transformOrigin: '50% 50%', offset: 1 }
+    ], { duration: 2000, easing: 'linear' });
+    name.querySelectorAll('span').forEach(function (letter, index) {
+      run(letter, [{ transform: 'translateY(110%)' }, { transform: 'none' }], { duration: 900, delay: 80 + index * 70 });
+    });
+
+    // 2. ...then settles at the top while the photo comes into focus
+    run(stage.querySelector('.hero-photo'), [
+      { opacity: 0, transform: 'translateY(8%) scale(0.96)', filter: 'blur(16px)' },
+      { opacity: 1, transform: 'none', filter: 'blur(0px)' }
+    ], { duration: 1400, delay: 1250 });
+
+    // 3. Menu links drop in, headline letters rise, cards pop up, buttons and texts follow
+    stage.querySelectorAll('.hero-nav li').forEach(function (item, index) {
+      run(item, [{ opacity: 0, transform: 'translateY(-14px)' }, { opacity: 1, transform: 'none' }], { duration: 800, delay: 1650 + index * 55 });
+    });
+    var heading = stage.querySelector('.hero-heading');
+    if (heading) {
+      splitHeading(heading).forEach(function (letter, index) {
+        run(letter, [{ opacity: 0, transform: 'translateY(110%)' }, { opacity: 1, transform: 'none' }], { duration: 900, delay: 1500 + index * 22 });
+      });
+    }
+    stage.querySelectorAll('.stat-tile, .trait-card').forEach(function (card, index) {
+      run(card, [{ opacity: 0, transform: 'translateY(26px) scale(0.92)' }, { opacity: 1, transform: 'none' }], { duration: 1000, delay: 1800 + index * 120 });
+    });
+    run(stage.querySelector('.hero-actions'), rise, { delay: 2100 });
+    run(stage.querySelector('.hero-intro'), rise, { delay: 2200 });
+    run(stage.querySelector('.hero-value'), rise, { delay: 2250 });
+    run(document.querySelector('.topbar'), [{ opacity: 0, transform: 'translateY(-16px)' }, { opacity: 1, transform: 'none' }], { delay: 2000 });
+
+    root.classList.remove('intro-pending');
+    introEndsAt = performance.now() + 3200;
+
+    // Any scroll, click, tap or key press skips straight to the end
+    var events = ['wheel', 'touchstart', 'keydown', 'pointerdown'];
+    var stopListening = function () {
+      events.forEach(function (type) {
+        window.removeEventListener(type, skip);
+      });
+    };
+    var skip = function () {
+      animations.forEach(function (animation) {
+        animation.finish();
+      });
+      introEndsAt = 0;
+      stopListening();
+    };
+    events.forEach(function (type) {
+      window.addEventListener(type, skip, { passive: true });
+    });
+    window.setTimeout(stopListening, 3400);
+  }
+
+  if (stage && root.classList.contains('intro-pending')) {
+    if (reduceMotion || !document.body.animate) {
+      root.classList.remove('intro-pending');
+    } else {
+      playIntro();
+    }
+  }
+
+  /* b) Scroll animation on large screens: the top section turns into the sidebar */
+  var morphScreen = window.matchMedia('(min-width: 1200px)');
+  var canMorph = Boolean(stage && sidebar && hasObserver && !reduceMotion &&
+    window.CSS && CSS.supports('overflow-x', 'clip'));
+
+  if (canMorph) {
+    var name = stage.querySelector('.masthead');
+    var photo = stage.querySelector('.hero-photo');
+    var heroNav = stage.querySelector('.hero-nav');
+    var heroLinks = Array.prototype.slice.call(stage.querySelectorAll('.hero-nav a'));
+    var tiles = Array.prototype.slice.call(stage.querySelectorAll('.stat-tile[data-stat]'));
+    var ctaButton = stage.querySelector('[data-fly-cta]');
+    var otherButtons = Array.prototype.slice.call(stage.querySelectorAll('.hero-actions .btn:not([data-fly-cta])'));
+    var heading = stage.querySelector('.hero-heading');
+    var traitCard = stage.querySelector('.trait-card');
+    var cornerTexts = [stage.querySelector('.hero-intro'), stage.querySelector('.hero-value')];
+    var sideLogo = sidebar.querySelector('.side-logo');
+    var sideCta = sidebar.querySelector('.side-cta');
+    var sideNums = Array.prototype.slice.call(sidebar.querySelectorAll('.side-num'));
+
+    // Sidebar pieces that are built while the visitor scrolls
+    var builds = [
+      { el: sidebar.querySelector('.side-nav'), from: 0.38, to: 0.48, grow: true },
+      { el: sidebar.querySelector('.side-stats'), from: 0.42, to: 0.52, grow: true },
+      { el: sidebar.querySelector('.side-marquee'), from: 0.5, to: 0.6 },
+      { el: sidebar.querySelector('.side-email'), from: 0.55, to: 0.65, rise: true },
+      { el: sidebar.querySelector('.side-brand'), from: 0.6, to: 0.7, grow: true },
+      { el: sidebar.querySelector('.side-brand p'), from: 0.78, to: 0.88, rise: true },
+      { el: sidebar.querySelector('.side-icon'), from: 0.84, to: 0.9, grow: true }
+    ].filter(function (build) { return build.el; });
+
+    var flyers = [];      // pieces of the top section that fly into the sidebar
+    var distance = 0;     // how far the visitor scrolls while the section is pinned
+    var queued = false;
+
+    // Works out where a piece must move so that `box` (part of it) lands on `target`
+    var plan = function (element, elementBox, box, target, scale, alignLeft, from, to, arrival) {
+      var tx = alignLeft
+        ? target.left - elementBox.left - scale * (box.left - elementBox.left)
+        : (target.left + target.width / 2) - elementBox.left - scale * (box.left + box.width / 2 - elementBox.left);
+      var ty = (target.top + target.height / 2) - elementBox.top - scale * (box.top + box.height / 2 - elementBox.top);
+      flyers.push({ el: element, tx: tx, ty: ty, scale: scale, from: from, to: to, arrival: arrival });
+    };
+
+    var measure = function () {
+      root.classList.add('is-measuring');
+      distance = Math.round(window.innerHeight * 0.95);
+      hero.style.height = (stage.offsetHeight + distance) + 'px';
+
+      var base = stage.getBoundingClientRect();
+      var local = function (rect) {
+        return { left: rect.left - base.left, top: rect.top - base.top, width: rect.width, height: rect.height };
+      };
+      var shown = function (rect) {
+        return rect.width > 0 && rect.height > 0;
+      };
+      flyers = [];
+
+      // Giant name → the gold "ROUSHAN" label at the top of the sidebar
+      var letters = name.querySelectorAll('span');
+      var range = document.createRange();
+      range.setStart(letters[0].firstChild, 0);
+      range.setEnd(letters[letters.length - 1].firstChild, 1);
+      var nameBox = local(range.getBoundingClientRect());
+      var logoBox = textRect(sideLogo);
+      if (shown(logoBox)) {
+        plan(name, local(name.getBoundingClientRect()), nameBox, logoBox, logoBox.width / nameBox.width, true, 0, 0.82, sideLogo);
+      }
+
+      // Menu links → the matching sidebar links (one after another)
+      heroLinks.forEach(function (link, index) {
+        var match = sidebar.querySelector('.side-nav a[href="' + link.getAttribute('href') + '"]');
+        var target = match ? textRect(match) : null;
+        if (target && shown(target)) {
+          var own = local(textRect(link));
+          var start = 0.02 + index * 0.025;
+          plan(link, local(link.getBoundingClientRect()), own, target, target.height / own.height, true, start, start + 0.48, match);
+        } else {
+          flyers.push({ el: link, fadeOnly: true, from: 0, to: 0.1 });
+        }
+      });
+
+      // Key-fact cards → the sidebar's numbers
+      tiles.forEach(function (tile, index) {
+        var match = sidebar.querySelector('.side-stats [data-stat="' + tile.getAttribute('data-stat') + '"]');
+        var target = match ? match.getBoundingClientRect() : null;
+        var own = local(tile.getBoundingClientRect());
+        if (target && shown(target)) {
+          var start = index * 0.04;
+          plan(tile, own, own, target, Math.min(target.width / own.width, target.height / own.height), false, start, start + 0.56, match);
+        } else {
+          flyers.push({ el: tile, fadeOnly: true, from: 0.02, to: 0.2 });
+        }
+      });
+
+      // "Contact Me" → the sidebar's "Contact Me" button
+      if (ctaButton) {
+        var ctaBox = sideCta.getBoundingClientRect();
+        var own = local(ctaButton.getBoundingClientRect());
+        if (shown(ctaBox) && shown(own)) {
+          plan(ctaButton, own, own, ctaBox, ctaBox.height / own.height, false, 0.08, 0.64, sideCta);
+        }
+      }
+
+      root.classList.remove('is-measuring');
+    };
+
+    // Shows or hides a piece completely once it has faded out (so it can't be clicked or tabbed to)
+    var setOpacity = function (element, opacity) {
+      element.style.opacity = opacity;
+      element.style.visibility = opacity < 0.02 ? 'hidden' : '';
+    };
+
+    var gold = [201, 162, 39];
+    var navy = [11, 31, 58];
+
+    var apply = function () {
+      queued = false;
+      if (!morph.active) {
+        return;
+      }
+      var p = distance ? clamp01(-hero.getBoundingClientRect().top / distance) : 0;
+
+      // Pieces flying into the sidebar; each swaps with the real sidebar piece as it lands
+      flyers.forEach(function (flyer) {
+        if (flyer.fadeOnly) {
+          setOpacity(flyer.el, 1 - part(p, flyer.from, flyer.to));
+          return;
+        }
+        var t = easeInOut(part(p, flyer.from, flyer.to));
+        var scale = 1 + (flyer.scale - 1) * t;
+        flyer.el.style.transform = 'translate(' + (flyer.tx * t).toFixed(1) + 'px, ' + (flyer.ty * t).toFixed(1) + 'px) scale(' + scale.toFixed(4) + ')';
+        setOpacity(flyer.el, 1 - part(p, flyer.to - 0.02, flyer.to + 0.01));
+        if (flyer.arrival) {
+          setOpacity(flyer.arrival, part(p, flyer.to - 0.05, flyer.to));
+        }
+      });
+
+      // The giant name turns from gold to navy as it shrinks into the sidebar label
+      var shade = part(p, 0.6, 0.82);
+      name.style.color = 'rgb(' + gold.map(function (value, index) {
+        return Math.round(value + (navy[index] - value) * shade);
+      }).join(',') + ')';
+
+      // Everything else in the top section blurs, slides or fades away
+      var blur = part(p, 0, 0.8);
+      photo.style.filter = 'blur(' + (22 * blur).toFixed(1) + 'px)';
+      photo.style.opacity = (1 - 0.7 * blur).toFixed(3);
+
+      heroNav.style.setProperty('--sep-opacity', (1 - part(p, 0, 0.08)).toFixed(3));
+
+      var corner = easeInOut(part(p, 0.02, 0.2));
+      cornerTexts.forEach(function (element) {
+        if (element) {
+          element.style.transform = 'translateY(' + (-50 * corner).toFixed(1) + 'px)';
+          setOpacity(element, 1 - corner);
+        }
+      });
+
+      if (traitCard) {
+        var away = easeInOut(part(p, 0.05, 0.3));
+        var vw = window.innerWidth / 100;
+        traitCard.style.transform = 'translate(' + (-25 * vw * away).toFixed(1) + 'px, ' + (-5 * vw * away).toFixed(1) + 'px) scale(' + (1 - 0.7 * away).toFixed(3) + ')';
+        setOpacity(traitCard, 1 - away);
+      }
+
+      if (heading) {
+        var lift = part(p, 0.1, 0.38);
+        heading.style.transform = 'translateY(' + (-40 * lift).toFixed(1) + 'px)';
+        setOpacity(heading, 1 - lift);
+      }
+      otherButtons.forEach(function (button) {
+        setOpacity(button, 1 - part(p, 0.08, 0.25));
+      });
+
+      // The sidebar is built piece by piece
+      builds.forEach(function (build) {
+        var t = easeInOut(part(p, build.from, build.to));
+        if (build.grow) {
+          build.el.style.transform = 'scale(' + (0.5 + 0.5 * t).toFixed(3) + ')';
+        } else if (build.rise) {
+          build.el.style.transform = 'translateY(' + (16 * (1 - t)).toFixed(1) + 'px)';
+        }
+        setOpacity(build.el, t);
+      });
+
+      // The sidebar numbers count up once their box appears
+      if (!morph.counted && p >= 0.56) {
+        morph.counted = true;
+        sideNums.forEach(countUp);
+      }
+
+      sidebar.inert = p < 0.9;
+    };
+
+    var queueApply = function () {
+      if (!queued) {
+        queued = true;
+        window.requestAnimationFrame(apply);
+      }
+    };
+
+    // Every element whose style the animation sets, so it can be undone cleanly
+    var touched = [name, photo, heroNav, heading, traitCard, ctaButton, sideLogo, sideCta]
+      .concat(heroLinks, tiles, otherButtons, cornerTexts, sideNums.map(function (n) { return n.parentElement; }),
+        Array.prototype.slice.call(sidebar.querySelectorAll('.side-nav a')),
+        builds.map(function (build) { return build.el; }))
+      .filter(Boolean);
+
+    var enable = function () {
+      morph.active = true;
+      root.classList.add('morph-on');
+      if (!morph.counted) {
+        sideNums.forEach(function (number) { number.textContent = '0'; });
+      }
+      measure();
+      apply();
+    };
+
+    var disable = function () {
+      morph.active = false;
+      root.classList.remove('morph-on');
+      hero.style.height = '';
+      touched.forEach(function (element) {
+        ['transform', 'opacity', 'visibility', 'filter', 'color'].forEach(function (property) {
+          element.style.removeProperty(property);
+        });
+      });
+      heroNav.style.removeProperty('--sep-opacity');
+      if (!morph.counted) {
+        sideNums.forEach(function (number) { number.textContent = number.getAttribute('data-count'); });
+      }
+      setSidebar(heroGone);
+    };
+
+    var refresh = function () {
+      if (morphScreen.matches && !morph.active) {
+        enable();
+      } else if (!morphScreen.matches && morph.active) {
+        disable();
+      } else if (morph.active) {
+        measure();
+        apply();
+      }
+    };
+
+    window.addEventListener('scroll', queueApply, { passive: true });
+    window.addEventListener('resize', function () { window.requestAnimationFrame(refresh); });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(refresh); // sizes change once the fonts load
+    }
+    window.addEventListener('load', refresh);
+    refresh();
+
+    // A link straight to a section (e.g. roushanmufti.in/#faq): the browser jumped
+    // there before the top section grew taller, so jump again to the right place
+    if (location.hash.length > 1) {
+      var linked = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (linked && morph.active) {
+        linked.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
+    }
   }
 
 
@@ -329,13 +773,18 @@
     var counterObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          window.setTimeout(function () { countUp(entry.target); }, 350);
+          // Numbers in the top section wait until the opening animation shows them
+          var wait = Math.max(350, introEndsAt - performance.now() - 1200);
+          window.setTimeout(function () { countUp(entry.target); }, wait);
           counterObserver.unobserve(entry.target);
         }
       });
     });
 
     document.querySelectorAll('[data-count]').forEach(function (counter) {
+      if (morph.active && counter.classList.contains('side-num')) {
+        return; // counted by the landing animation when the sidebar is built
+      }
       counter.textContent = '0';
       counterObserver.observe(counter);
     });

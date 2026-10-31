@@ -771,9 +771,24 @@ svg {
   position: relative;
   padding-top: 86px;
   overflow: hidden;
-  background:
-    radial-gradient(42rem 34rem at 50% 70%, rgba(126, 101, 58, 0.22), transparent 70%),
-    var(--stone);
+}
+
+/* Everything in the top section sits on this "stage". On large screens it stays
+   pinned while the visitor scrolls (see the landing animation in script.js). */
+.hero-stage {
+  position: relative;
+}
+
+/* Soft warm glow behind the photo; it fades out towards the bottom so there is
+   no visible edge when the section scrolls away */
+.hero-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(42rem 34rem at 50% 70%, rgba(126, 101, 58, 0.22), transparent 70%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent);
+  mask-image: linear-gradient(to bottom, #000 60%, transparent);
+  pointer-events: none;
 }
 
 /* Giant name behind the photo */
@@ -1938,19 +1953,39 @@ a.contact-row:hover {
    visitors who have asked their device for reduced motion.
    ========================================================================== */
 
-/* Hero: the giant name rises letter by letter, then the rest follows */
-.js .masthead span {
-  animation: letter-up 1.1s var(--ease-out) both;
-  animation-delay: calc(var(--i, 0) * 60ms + 80ms);
+/* ----- Landing animation (script.js, section 8) -----
+   Until the opening animation starts, the top section stays hidden so it
+   never flashes up half-built. A timer in index.html removes this after 4s
+   at the latest, so the page can never get stuck hidden. */
+.intro-pending .hero-stage > *,
+.intro-pending .topbar {
+  opacity: 0;
 }
 
-.js .hero-photo {
-  animation: photo-in 1.3s var(--ease-out) 0.3s both;
+/* The headline is split into lines and letters for the opening animation */
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
 }
 
-.js .hero-in {
-  animation: rise 0.9s var(--ease-out) both;
-  animation-delay: calc(var(--i, 0) * 90ms + 300ms);
+.hero-char {
+  display: inline-block;
+  white-space: pre;
+}
+
+/* Separators in the top menu fade out as the links fly to the sidebar */
+.hero-nav li + li::before {
+  opacity: var(--sep-opacity, 1);
+}
+
+/* While script.js measures where things should fly to, all motion is paused */
+.is-measuring .hero-stage *,
+.is-measuring .sidebar,
+.is-measuring .sidebar * {
+  transform: none !important;
+  transition: none !important;
 }
 
 /* Sections: cards fade up as they scroll into view (script.js adds .is-visible) */
@@ -1982,27 +2017,6 @@ a.contact-row:hover {
 
 .js .mask.is-visible > span {
   transform: none;
-}
-
-@keyframes letter-up {
-  from {
-    opacity: 0;
-    transform: translateY(45%);
-  }
-}
-
-@keyframes photo-in {
-  from {
-    opacity: 0;
-    transform: translateY(6%);
-  }
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
 }
 
 @keyframes marquee {
@@ -2046,9 +2060,6 @@ a.contact-row:hover {
     scroll-behavior: auto;
   }
 
-  .js .masthead span,
-  .js .hero-photo,
-  .js .hero-in,
   .js .reveal,
   .js .mask > span,
   .faq-item[open] .faq-answer {
@@ -2308,8 +2319,55 @@ a.contact-row:hover {
     --mast: 17.6vw;                         /* giant name size */
     --mast-top: 2.2vw;
     display: block;
-    height: max(700px, min(100svh, 1040px));
     padding-top: 0;
+  }
+
+  .hero-stage {
+    height: max(700px, min(100svh, 1040px));
+  }
+
+  /* Landing animation on large screens: the section becomes taller than the
+     screen, the stage stays pinned, and script.js moves its pieces into the
+     sidebar as the visitor scrolls. The sidebar is then built piece by piece. */
+  .morph-on .hero {
+    z-index: 45;                             /* pieces fly over the sidebar */
+    overflow: visible;
+    overflow-x: clip;
+  }
+
+  .morph-on .hero-stage {
+    position: sticky;
+    top: 0;
+  }
+
+  /* The pinned section lies over the sidebar, so only its links and buttons
+     catch clicks; everything else lets them through to the sidebar */
+  .morph-on .hero {
+    pointer-events: none;
+  }
+
+  .morph-on .hero a,
+  .morph-on .hero button {
+    pointer-events: auto;
+  }
+
+  .morph-on .sidebar {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+
+  .morph-on .masthead,
+  .morph-on .hero-nav a,
+  .morph-on .stat-tile,
+  .morph-on [data-fly-cta] {
+    transform-origin: 0 0;
+    will-change: transform, opacity;
+  }
+
+  .morph-on .hero-photo {
+    will-change: filter, opacity;
   }
 
   .masthead {
@@ -2370,6 +2428,7 @@ a.contact-row:hover {
   }
 
   .hero-nav a {
+    display: inline-block;
     color: var(--navy);
     font-size: clamp(0.85rem, 1.05vw, 1.05rem);
     font-weight: 800;
