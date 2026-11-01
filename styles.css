@@ -791,10 +791,15 @@ svg {
   pointer-events: none;
 }
 
-/* Giant name behind the photo */
+/* Giant name behind the photo.
+   overflow: hidden hides the letters while they rise in the opening animation.
+   With such a tight line-height the bottom of the letters sits slightly below
+   the box, so the padding gives them room and the negative margin keeps the
+   layout exactly where it was. */
 .masthead {
   position: relative;
-  margin: 0;
+  margin: 0 0 -0.08em;
+  padding-bottom: 0.08em;
   overflow: hidden;
   color: var(--gold);
   font-family: var(--font-heading);
@@ -2000,10 +2005,13 @@ a.contact-row:hover {
   transform: none;
 }
 
-/* Headings slide up from behind a mask */
+/* Headings slide up from behind a mask.
+   The bottom padding leaves room for the tails of letters like g, y and J,
+   and the negative margin cancels most of it so the spacing stays the same. */
 .mask {
   overflow: hidden;
-  padding-bottom: 0.08em;
+  padding-bottom: 0.24em;
+  margin-bottom: -0.16em;
 }
 
 .mask > span {
@@ -2011,7 +2019,7 @@ a.contact-row:hover {
 }
 
 .js .mask > span {
-  transform: translateY(105%);
+  transform: translateY(120%);
   transition: transform 1s var(--ease-out);
 }
 
